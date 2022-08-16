@@ -15,6 +15,11 @@
 		490D50572127880B00DA6CA3 /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490D50562127880B00DA6CA3 /* PreferencesWindowController.swift */; };
 		4912FF7E2149861A00C934B6 /* MenuItemEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4912FF7D2149861A00C934B6 /* MenuItemEvent.swift */; };
 		492059D62129BE4600FDCC76 /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 492059D52129BE4600FDCC76 /* Preferences.storyboard */; };
+		DB8CCA6028ABD69A008CB746 /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CCA5F28ABD69A008CB746 /* MainMenu.swift */; };
+		DB8CCA6228ABD6B0008CB746 /* OnOpenMenuDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CCA6128ABD6B0008CB746 /* OnOpenMenuDelegate.swift */; };
+		DB8CCA6628ABDA3B008CB746 /* ConfigData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CCA6328ABDA3B008CB746 /* ConfigData.swift */; };
+		DB8CCA6728ABDA3B008CB746 /* ConfigHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CCA6428ABDA3B008CB746 /* ConfigHandler.swift */; };
+		DB8CCA6828ABDA3B008CB746 /* ConfigParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CCA6528ABDA3B008CB746 /* ConfigParser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,9 +32,13 @@
 		490D503D21235BFD00DA6CA3 /* ClipBoardManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ClipBoardManager.entitlements; sourceTree = "<group>"; };
 		490D50542127853E00DA6CA3 /* PreferencefViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencefViewController.swift; sourceTree = "<group>"; };
 		490D50562127880B00DA6CA3 /* PreferencesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
-		490EC522215836EB002C192C /* LaunchAtLogin.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LaunchAtLogin.framework; sourceTree = "<group>"; };
 		4912FF7D2149861A00C934B6 /* MenuItemEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemEvent.swift; sourceTree = "<group>"; };
 		492059D52129BE4600FDCC76 /* Preferences.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Preferences.storyboard; sourceTree = "<group>"; };
+		DB8CCA5F28ABD69A008CB746 /* MainMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
+		DB8CCA6128ABD6B0008CB746 /* OnOpenMenuDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnOpenMenuDelegate.swift; sourceTree = "<group>"; };
+		DB8CCA6328ABDA3B008CB746 /* ConfigData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigData.swift; sourceTree = "<group>"; };
+		DB8CCA6428ABDA3B008CB746 /* ConfigHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigHandler.swift; sourceTree = "<group>"; };
+		DB8CCA6528ABDA3B008CB746 /* ConfigParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigParser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,7 +55,6 @@
 		490D502721235BFA00DA6CA3 = {
 			isa = PBXGroup;
 			children = (
-				490EC522215836EB002C192C /* LaunchAtLogin.framework */,
 				490D505121276D7D00DA6CA3 /* PreferencesWindow */,
 				490D503221235BFA00DA6CA3 /* ClipBoardManager */,
 				490D503121235BFA00DA6CA3 /* Products */,
@@ -64,6 +72,10 @@
 		490D503221235BFA00DA6CA3 /* ClipBoardManager */ = {
 			isa = PBXGroup;
 			children = (
+				DB8CCA6328ABDA3B008CB746 /* ConfigData.swift */,
+				DB8CCA6428ABDA3B008CB746 /* ConfigHandler.swift */,
+				DB8CCA6528ABDA3B008CB746 /* ConfigParser.swift */,
+				DB8CCA5F28ABD69A008CB746 /* MainMenu.swift */,
 				490D503321235BFA00DA6CA3 /* AppDelegate.swift */,
 				490D503521235BFA00DA6CA3 /* ViewController.swift */,
 				4912FF7D2149861A00C934B6 /* MenuItemEvent.swift */,
@@ -71,6 +83,7 @@
 				490D503921235BFD00DA6CA3 /* Main.storyboard */,
 				490D503C21235BFD00DA6CA3 /* Info.plist */,
 				490D503D21235BFD00DA6CA3 /* ClipBoardManager.entitlements */,
+				DB8CCA6128ABD6B0008CB746 /* OnOpenMenuDelegate.swift */,
 			);
 			path = ClipBoardManager;
 			sourceTree = "<group>";
@@ -179,6 +192,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				490D50552127853E00DA6CA3 /* PreferencefViewController.swift in Sources */,
+				DB8CCA6228ABD6B0008CB746 /* OnOpenMenuDelegate.swift in Sources */,
+				DB8CCA6028ABD69A008CB746 /* MainMenu.swift in Sources */,
+				DB8CCA6628ABDA3B008CB746 /* ConfigData.swift in Sources */,
+				DB8CCA6828ABDA3B008CB746 /* ConfigParser.swift in Sources */,
+				DB8CCA6728ABDA3B008CB746 /* ConfigHandler.swift in Sources */,
 				490D503621235BFA00DA6CA3 /* ViewController.swift in Sources */,
 				4912FF7E2149861A00C934B6 /* MenuItemEvent.swift in Sources */,
 				490D50572127880B00DA6CA3 /* PreferencesWindowController.swift in Sources */,

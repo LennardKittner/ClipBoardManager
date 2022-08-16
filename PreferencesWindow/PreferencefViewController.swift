@@ -17,23 +17,23 @@ class PreferencefViewController: NSTabViewController {
     @IBOutlet weak var preview: NSTextField!
     @IBOutlet weak var licenses: NSButton!
     
-    var appDelegate :AppDelegate?
-    
+    private var configHandler :ConfigHandler!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
-        appDelegate = (NSApplication.shared.delegate as! AppDelegate)
+        configHandler = (NSApplication.shared.delegate as! AppDelegate).configHandler
         self.preferredContentSize = NSMakeSize(self.view.frame.size.width, self.view.frame.size.height)
     }
     
     override func viewDidAppear() {
         super.viewDidAppear()
         if display != nil {
-            display.stringValue = String(appDelegate?.max_display ?? 20)
-            refresh.stringValue = String(appDelegate?.refreshTime ?? 0.5)
-            preview.stringValue = String(appDelegate?.preview_length ?? 40)
+            display.stringValue = String(configHandler.conf.clippingCount)
+            refresh.stringValue = String(configHandler.conf.refreshTime)
+            preview.stringValue = String(configHandler.conf.previewWidth)
 
-            atLogin.state = NSControl.StateValue(rawValue: (appDelegate?.startAtLogin)! ? 1 : 0)
+            atLogin.state = NSControl.StateValue(rawValue: configHandler.conf.startAtLogin ? 1 : 0)
         }
         if gitHub != nil {
             let blue = NSColor.linkColor
@@ -49,45 +49,37 @@ class PreferencefViewController: NSTabViewController {
         self.parent?.view.window?.title = self.title!
     }
     
-    func writeConf() {
-        let conf_txt = """
-        Display:\(String((appDelegate?.max_display)!))
-        AtLogin:\((appDelegate?.startAtLogin)! ? "yes" : "no")
-        Refresh:\(String((appDelegate?.refreshTime)!))
-        Preview:\(String((appDelegate?.preview_length)!))
-        """
-        try! conf_txt.write(to: (appDelegate?.conf_file)!, atomically: true, encoding: String.Encoding.utf8)
-    }
-    
     @IBAction func autoStart(_ sender: NSButton) {
-        appDelegate?.startAtLogin = !((appDelegate?.startAtLogin)!)
-        appDelegate?.setStartAtLogin()
-        writeConf()
+        let newConf = (configHandler.conf.copy() as! ConfigData)
+        newConf.startAtLogin.toggle()
+        configHandler.conf = newConf
     }
     
     @IBAction func displayChange(_ sender: NSTextField) {
         if sender.intValue > 0 {
-            appDelegate!.max_display = Int(sender.intValue)
-            //appDelegate?.refreshMenu()
-            writeConf()
+            let newConf = (configHandler.conf.copy() as! ConfigData)
+            newConf.clippingCount = Int(sender.intValue)
+            configHandler.conf = newConf
         }
+        sender.intValue = Int32(configHandler.conf.clippingCount)
     }
     
     @IBAction func refreshChange(_ sender: NSTextField) {
         if sender.doubleValue > 0.0 {
-            appDelegate!.refreshTime = Double(sender.doubleValue)
-            appDelegate?.timer?.invalidate()
-            appDelegate?.startTimer(wait: appDelegate?.refreshTime ?? 0.5)
-            writeConf()
+            let newConf = (configHandler.conf.copy() as! ConfigData)
+            newConf.refreshTime = Double(sender.doubleValue)
+            configHandler.conf = newConf
         }
+        sender.doubleValue = configHandler.conf.refreshTime
     }
     
     @IBAction func previewChange(_ sender: NSTextField) {
         if sender.intValue > 0 {
-            appDelegate!.preview_length = Int(sender.intValue)
-            //appDelegate?.refreshMenu()
-            writeConf()
+            let newConf = (configHandler.conf.copy() as! ConfigData)
+            newConf.previewWidth = Int(sender.intValue)
+            configHandler.conf = newConf
         }
+        sender.intValue = Int32(configHandler.conf.previewWidth)
     }
     
     @IBAction func openGitHub(_ sender: Any) {
