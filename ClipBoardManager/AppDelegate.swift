@@ -9,6 +9,13 @@
 import Cocoa
 //import LaunchAtLogin
 
+//TODO: Test config
+//TODO: refactor Menu
+//TODO: extract cliphoardhadnler
+//TODO: add autostart
+//TODO: make universall
+//TODO: migrate to swiftUI
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
@@ -113,49 +120,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @objc func refresh(_ sender: Any?) {
         if checkClipBoard() {
-//            let fileURL_t = NSURL(from: clipBoard)
-//            if fileURL_t != nil {
-//                var prefix = ""
-//                if !(fileURL_t?.hasDirectoryPath)! {
-//                    let file_extension = fileURL_t?.pathExtension?.uppercased()
-//                    for i in 0...9 {
-//                        if file_types[i].contains(file_extension!) {
-//                            prefix = file_icons[i][Int(arc4random_uniform(UInt32(file_icons[i].count)))]
-//                            break
-//                        }
-//                    }
-//                    if prefix.isEmpty {
-//                        prefix = text_file_icons[0]
-//                    }
-//                }
-//                else {
-//                    prefix = folder_file_icons
-//                }
-//                list.insert(CBElement(string: fileURL_t!.path!, isFile: true, prefix: prefix, itemTitle: nil), at: 0)
-//            }
-//            else {
-            let tmp = clipBoard.pasteboardItems![0].string(forType: NSPasteboard.PasteboardType(rawValue: "public.utf8-plain-text")) ?? ""
-        
-            if copy_return {
-                copy_return = false
-                let tmps = tmp.components(separatedBy: CharacterSet.newlines)
-                for t in tmps.reversed() {
-                    if !t.trimmingCharacters(in: .whitespaces).trimmingCharacters(in: .newlines).isEmpty {
-                        list.insert(CBElement(string: t, isFile: false, prefix: "", itemTitle: nil), at: 0)
-                    }
-                }
-            }
-            else if copy_space {
-                copy_space = false
-                let tmps = tmp.components(separatedBy: " ")
-                for t in tmps.reversed() {
-                    if !t.trimmingCharacters(in: .whitespaces).trimmingCharacters(in: .newlines).isEmpty {
-                        list.insert(CBElement(string: t, isFile: false, prefix: "", itemTitle: nil), at: 0)
-                    }
-                }
-            }
-            else {
-                if !tmp.trimmingCharacters(in: .whitespaces).trimmingCharacters(in: .newlines).isEmpty {
+            let fileURL_t = NSURL(from: clipBoard)
+            if fileURL_t != nil {
+                list.insert(CBElement(string: fileURL_t!.path!, isFile: true, prefix: "", itemTitle: nil), at: 0)
+            } else {
+                let tmp = clipBoard.pasteboardItems![0].string(forType: NSPasteboard.PasteboardType(rawValue: "public.utf8-plain-text")) ?? ""
+                if !tmp.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
                     list.insert(CBElement(string: tmp, isFile: false, prefix: "", itemTitle: nil), at: 0)
                 }
             }
@@ -192,4 +162,10 @@ struct CBElement {
     let isFile :Bool
     let prefix :String
     var itemTitle :NSAttributedString?
+}
+
+extension Array {
+    public init(count: Int, elementCreator: @autoclosure () -> Element) {
+        self = (0 ..< count).map { _ in elementCreator() }
+    }
 }

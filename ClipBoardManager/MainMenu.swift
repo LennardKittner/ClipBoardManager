@@ -15,6 +15,22 @@ class MainMenu: NSMenu {
     init(configHandler :ConfigHandler) {
         self.configHandler = configHandler
         super.init(title: "mainMenu")
+        autoenablesItems = false
+        
+        let items = Array(count: configHandler.conf.clippingCount, elementCreator: ClipItem())
+        items.forEach({item in item.isHidden = true})
+        items.forEach({item in addItem(item)})
+
+        let placeholder = NSMenuItem(title: "Your clippings will apear here...", action: nil, keyEquivalent: "")
+        placeholder.isEnabled = false
+        addItem(placeholder)
+        
+        addItem(NSMenuItem.separator())
+        addItem(NSMenuItem(title: "Clear", action: #selector(AppDelegate.clear(_:)), keyEquivalent: "l"))
+        addItem(NSMenuItem.separator())
+        addItem(NSMenuItem(title: "Preferences", action: #selector(AppDelegate.showPreferences(_:)), keyEquivalent: ","))
+        addItem(NSMenuItem.separator())
+        addItem(NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
     }
     
     required init(coder: NSCoder) {
@@ -23,50 +39,18 @@ class MainMenu: NSMenu {
     }
     
     func refrsh(clipBoardHistory :[CBElement]) {
-        var cph = clipBoardHistory
-        removeAllItems()
-        var max_width :CGFloat = 120
-        
-        for (i, item) in clipBoardHistory.enumerated() {
-            var tmp = item.string
-            if item.string.count > configHandler.conf.previewWidth {
-                let index = item.string.index(item.string.startIndex, offsetBy: configHandler.conf.previewWidth-1)
-                tmp = item.string[..<index] + "..."
-            }
-            let color :NSColor = (UserDefaults.standard.string(forKey: "AppleInterfaceStyle") ?? "Light").contains("ark") ? NSColor.white : NSColor.black
-            let attributs = [NSAttributedStringKey.foregroundColor : color, NSAttributedStringKey.font : NSFont.menuBarFont(ofSize: (NSFont.systemFontSize+2))];
-            cph[i].itemTitle = NSAttributedString(string: tmp, attributes: attributs)
-            if max_width < clipBoardHistory[i].itemTitle?.size().width ?? 0 {
-                max_width = (clipBoardHistory[i].itemTitle?.size().width)!
+        for i in 0..<min(configHandler.conf.clippingCount, clipBoardHistory.count) {
+            let entry = clipBoardHistory[i]
+            if let item = items[i] as? ClipItem {
+                item.update(entry: entry, maxLength: configHandler.conf.previewWidth)
+                item.isHidden = false
             }
         }
-        
-        var i = 0
-        for element in cph {
-            var item :NSMenuItem
-            item = NSMenuItem(title: "", action:  #selector(AppDelegate.copy(_:)), keyEquivalent: String(i))
-            item.toolTip = element.string
-            item.tag = i
-            item.view = MenuItemEvent(frame: NSRect(x: 0, y: 0, width: 300, height: 20), title: element.itemTitle!, prefix: element.prefix, width: max_width, tag: i)
-            addItem(item)
-            
-            i = i + 1
-            if i == configHandler.conf.clippingCount {
-                break
+        if (clipBoardHistory.count < configHandler.conf.clippingCount) {
+            for i in clipBoardHistory.count..<configHandler.conf.clippingCount {
+                items[i].isHidden = true
             }
         }
-        
-        if cph.isEmpty {
-            let placeholder = NSMenuItem(title: "Your clippings will apear here...", action: nil, keyEquivalent: "")
-            placeholder.isEnabled = false
-            addItem(placeholder)
-        }
-        
-        addItem(NSMenuItem.separator())
-        addItem(NSMenuItem(title: "Clear", action: #selector(AppDelegate.clear(_:)), keyEquivalent: "l"))
-        addItem(NSMenuItem.separator())
-        addItem(NSMenuItem(title: "Preferences", action: #selector(AppDelegate.showPreferences(_:)), keyEquivalent: ","))
-        addItem(NSMenuItem.separator())
-        addItem(NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
+        items[configHandler.conf.clippingCount].isHidden = !clipBoardHistory.isEmpty
     }
 }
