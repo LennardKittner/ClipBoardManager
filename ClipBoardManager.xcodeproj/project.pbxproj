@@ -19,6 +19,7 @@
 		DB8CCA6728ABDA3B008CB746 /* ConfigHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CCA6428ABDA3B008CB746 /* ConfigHandler.swift */; };
 		DB8CCA6828ABDA3B008CB746 /* ConfigParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CCA6528ABDA3B008CB746 /* ConfigParser.swift */; };
 		DB8CCA6A28AC0C76008CB746 /* ClipItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CCA6928AC0C76008CB746 /* ClipItem.swift */; };
+		DB8CCA6C28AFFB08008CB746 /* ClipBoardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CCA6B28AFFB08008CB746 /* ClipBoardHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		DB8CCA6428ABDA3B008CB746 /* ConfigHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigHandler.swift; sourceTree = "<group>"; };
 		DB8CCA6528ABDA3B008CB746 /* ConfigParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigParser.swift; sourceTree = "<group>"; };
 		DB8CCA6928AC0C76008CB746 /* ClipItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipItem.swift; sourceTree = "<group>"; };
+		DB8CCA6B28AFFB08008CB746 /* ClipBoardHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipBoardHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 				490D503C21235BFD00DA6CA3 /* Info.plist */,
 				490D503D21235BFD00DA6CA3 /* ClipBoardManager.entitlements */,
 				DB8CCA6128ABD6B0008CB746 /* OnOpenMenuDelegate.swift */,
+				DB8CCA6B28AFFB08008CB746 /* ClipBoardHandler.swift */,
 			);
 			path = ClipBoardManager;
 			sourceTree = "<group>";
@@ -189,6 +192,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				490D50552127853E00DA6CA3 /* PreferencefViewController.swift in Sources */,
+				DB8CCA6C28AFFB08008CB746 /* ClipBoardHandler.swift in Sources */,
 				DB8CCA6228ABD6B0008CB746 /* OnOpenMenuDelegate.swift in Sources */,
 				DB8CCA6028ABD69A008CB746 /* MainMenu.swift in Sources */,
 				DB8CCA6628ABDA3B008CB746 /* ConfigData.swift in Sources */,
