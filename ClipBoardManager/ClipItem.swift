@@ -11,19 +11,22 @@ import Cocoa
 class ClipItem: NSMenuItem {
     
     var entry: CBElement?
+    let clipBoardHandler :ClipBoardHandler
     
-    init() {
+    init(clipBoardHandler :ClipBoardHandler) {
+        self.clipBoardHandler = clipBoardHandler
         super.init(title: "", action: nil, keyEquivalent: "")
         action = #selector(copyEntry(_:))
         target = self
     }
     
-    convenience init(entry: CBElement, maxLength: Int) {
-        self.init()
+    convenience init(entry: CBElement, maxLength: Int, clipBoardHandler :ClipBoardHandler) {
+        self.init(clipBoardHandler: clipBoardHandler)
         update(entry: entry, maxLength: maxLength)
     }
     
     required init(coder: NSCoder) {
+        clipBoardHandler = ClipBoardHandler()
         super.init(coder: coder)
     }
     
@@ -38,13 +41,13 @@ class ClipItem: NSMenuItem {
         }
         isEnabled = true
         if entry.isFile {
-            isEnabled = false
+            
         }
         title = menuTitel
         toolTip = entry.string
     }
     
     @objc func copyEntry(_ sender: NSMenuItem?) {
-   
+        clipBoardHandler.write(historyIndex: tag)
     }
 }

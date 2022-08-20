@@ -11,22 +11,29 @@ import Cocoa
 class MainMenu: NSMenu {
     
     let configHandler :ConfigHandler
+    let clipBoardHandler :ClipBoardHandler
     
-    init(configHandler :ConfigHandler) {
+    init(configHandler :ConfigHandler, clipBoardHandler :ClipBoardHandler) {
         self.configHandler = configHandler
+        self.clipBoardHandler = clipBoardHandler
         super.init(title: "mainMenu")
         autoenablesItems = false
         
-        let items = Array(count: configHandler.conf.clippingCount, elementCreator: ClipItem())
-        items.forEach({item in item.isHidden = true})
-        items.forEach({item in addItem(item)})
+        let items = Array(count: configHandler.conf.clippingCount, elementCreator: ClipItem(clipBoardHandler: clipBoardHandler))
+        for i in 0..<items.count {
+            items[i].isHidden = true
+            items[i].tag = i
+            addItem(items[i])
+        }
+        items.forEach({item in })
+        items.forEach({item in })
 
         let placeholder = NSMenuItem(title: "Your clippings will apear here...", action: nil, keyEquivalent: "")
         placeholder.isEnabled = false
         addItem(placeholder)
         
         addItem(NSMenuItem.separator())
-        addItem(NSMenuItem(title: "Clear", action: #selector(AppDelegate.clear(_:)), keyEquivalent: "l"))
+        addItem(NSMenuItem(title: "Clear", action: #selector(clear(_:)), keyEquivalent: "l"))
         addItem(NSMenuItem.separator())
         addItem(NSMenuItem(title: "Preferences", action: #selector(AppDelegate.showPreferences(_:)), keyEquivalent: ","))
         addItem(NSMenuItem.separator())
@@ -35,6 +42,7 @@ class MainMenu: NSMenu {
     
     required init(coder: NSCoder) {
         configHandler = ConfigHandler(onChange: {(c) in })
+        clipBoardHandler = ClipBoardHandler()
         super.init(coder: coder)
     }
     
@@ -52,5 +60,9 @@ class MainMenu: NSMenu {
             }
         }
         items[configHandler.conf.clippingCount].isHidden = !clipBoardHistory.isEmpty
+    }
+    
+    @objc func clear(_ sender :Any) {
+        clipBoardHandler.clear()
     }
 }
