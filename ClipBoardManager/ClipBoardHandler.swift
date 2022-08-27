@@ -8,21 +8,16 @@
 
 import Cocoa
 
-struct CBElement {
-    var string :String
-    var isFile :Bool
-    var content :[NSPasteboard.PasteboardType : Data]
-}
-
 class ClipBoardHandler {
-    let clippings = URL(fileURLWithPath: "\(FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0].path)/ClipBoardManager/Clippings")
     let clipBoard = NSPasteboard.general
     var oldChangeCount :Int!
     var isWriting = false
     var history :[CBElement]!
+    var configHandler :ConfigHandler
     
-    init() {
-        oldChangeCount = -1
+    init(configHandler :ConfigHandler) {
+        self.configHandler = configHandler
+        oldChangeCount = clipBoard.changeCount
         history = []
     }
     
@@ -37,11 +32,14 @@ class ClipBoardHandler {
             }
         }
         history.insert(CBElement(string: clipBoard.string(forType: NSPasteboard.PasteboardType.string) ?? "No Preview Found", isFile: content[NSPasteboard.PasteboardType.URL] != nil, content: content), at: 0)
+        if history.count > configHandler.conf.clippingCount {
+            history.removeLast(history.count - configHandler.conf.clippingCount)
+        }
         return history.first!
     }
     
     func write(entry: CBElement) {
-        isWriting = true //TODO: make thread save
+        isWriting = true //TODO: thread save
         clipBoard.clearContents()
         for (t, d) in entry.content {
             clipBoard.setData(d, forType: t)
@@ -56,7 +54,6 @@ class ClipBoardHandler {
         
     func clear() {
         history.removeAll()
-        oldChangeCount = -1
     }
     
     func hasChanged() -> Bool {
@@ -67,13 +64,30 @@ class ClipBoardHandler {
         return false
     }
     
+    func getHistoryAsJSON() -> String {
+        let hs = history.map({(e) in e.toMap()})
+        if let jsonData = try? JSONSerialization.data(withJSONObject: hs, options: .prettyPrinted) {
+            return String(data: jsonData, encoding: String.Encoding.utf8) ?? ""
+        }
+        return ""
+    }
+
+    func loadHistoryFromJSON(JSON: String) {
+        let decoded = try? JSONSerialization.jsonObject(with: JSON.data(using: String.Encoding.utf8) ?? Data(), options: [])
+        if let arr = decoded as? [[String : String]] {
+            for dict in arr {
+                self.history.append(CBElement(from: dict))
+            }
+        }
+    }
+    
     func logPasetBoard() {
         let logPB = {(name: String, t: NSPasteboard.PasteboardType) in
             print(name)
             print("Type: " + t.rawValue)
-            print(self.clipBoard.pasteboardItems![0].propertyList(forType: t))
-            print(self.clipBoard.pasteboardItems![0].string(forType: t))
-            print(self.clipBoard.pasteboardItems![0].data(forType: t))
+            print(self.clipBoard.pasteboardItems?[0].propertyList(forType: t) ?? "")
+            print(self.clipBoard.pasteboardItems?[0].string(forType: t) ?? "")
+            print(self.clipBoard.pasteboardItems?[0].data(forType: t) ?? "")
         }
         
         print(clipBoard.changeCount)

@@ -42,7 +42,7 @@ class MainMenu: NSMenu {
     
     required init(coder: NSCoder) {
         configHandler = ConfigHandler(onChange: {(c) in })
-        clipBoardHandler = ClipBoardHandler()
+        clipBoardHandler = ClipBoardHandler(configHandler: configHandler)
         super.init(coder: coder)
     }
     

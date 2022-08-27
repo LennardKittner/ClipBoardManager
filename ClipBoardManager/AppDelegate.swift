@@ -7,8 +7,10 @@
 //
 
 import Cocoa
-//import LaunchAtLogin
 
+//TODO: clear does not work
+//TODO: fix sandbox
+//TODO: paste file bug
 //TODO: Test config
 //TODO: save clippings
 //TODO: add autostart
@@ -18,6 +20,7 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
+    let clippings = URL(fileURLWithPath: "\(FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0].path)/ClipBoardManager/Clippings.json")
     var preferencesController :NSWindowController?
     let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.squareLength)
     var configHandler :ConfigHandler!
@@ -30,15 +33,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             button.image = NSImage(named:NSImage.Name("icon"))
         }
         
-        clipBoardHandler = ClipBoardHandler()
         configHandler = ConfigHandler(onChange: applyCfg)
+        clipBoardHandler = ClipBoardHandler(configHandler: configHandler)
         statusItem.menu = MainMenu(configHandler: configHandler, clipBoardHandler: clipBoardHandler)
         menuDelegate = OnOpenMenuDelegate(onOpen: refrshMenu)
         statusItem.menu?.delegate = menuDelegate
+        if let clippings = try? String(contentsOfFile: clippings.path) {
+            clipBoardHandler.loadHistoryFromJSON(JSON: clippings)
+        }
     }
     
     func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
+        let JSON = clipBoardHandler.getHistoryAsJSON()
+        try? JSON.write(toFile: clippings.path, atomically: true, encoding: String.Encoding.utf8)
     }
     
     func refrshMenu(menu: NSMenu) {

@@ -24,9 +24,9 @@ class ClipItem: NSMenuItem {
         self.init(clipBoardHandler: clipBoardHandler)
         update(entry: entry, maxLength: maxLength)
     }
-    
+
     required init(coder: NSCoder) {
-        clipBoardHandler = ClipBoardHandler()
+        clipBoardHandler = ClipBoardHandler(configHandler: ConfigHandler(onChange: {(c) in }))
         super.init(coder: coder)
     }
     
