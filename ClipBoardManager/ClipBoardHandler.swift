@@ -13,10 +13,19 @@ class ClipBoardHandler {
     var oldChangeCount :Int!
     var isWriting = false
     var history :[CBElement]!
-    var configHandler :ConfigHandler
+    private var _historyCapacity :Int
+    var historyCapacity :Int {
+        get { return _historyCapacity }
+        set {
+            _historyCapacity = newValue
+            if history.count > _historyCapacity {
+                history.removeLast(history.count - _historyCapacity)
+            }
+        }
+    }
     
-    init(configHandler :ConfigHandler) {
-        self.configHandler = configHandler
+    init(historyCapacity: Int) {
+        self._historyCapacity = historyCapacity
         oldChangeCount = clipBoard.changeCount
         history = []
     }
@@ -32,8 +41,8 @@ class ClipBoardHandler {
             }
         }
         history.insert(CBElement(string: clipBoard.string(forType: NSPasteboard.PasteboardType.string) ?? "No Preview Found", isFile: content[NSPasteboard.PasteboardType.URL] != nil, content: content), at: 0)
-        if history.count > configHandler.conf.clippingCount {
-            history.removeLast(history.count - configHandler.conf.clippingCount)
+        if history.count > historyCapacity {
+            history.removeLast(history.count - historyCapacity)
         }
         return history.first!
     }

@@ -15,7 +15,6 @@ class PreferencefViewController: NSTabViewController {
     @IBOutlet weak var atLogin: NSButton!
     @IBOutlet weak var refresh: NSTextField!
     @IBOutlet weak var preview: NSTextField!
-    @IBOutlet weak var licenses: NSButton!
     
     private var configHandler :ConfigHandler!
 
@@ -40,12 +39,7 @@ class PreferencefViewController: NSTabViewController {
             let attributedStringColor = [NSAttributedStringKey.foregroundColor : blue];
             let title = NSAttributedString(string: "My GitHub", attributes: attributedStringColor)
             gitHub.attributedTitle = title
-            
-            let license_t = NSAttributedString(string: "Licenses", attributes: attributedStringColor)
-            
-            licenses.attributedTitle = license_t
         }
-        //update Title
         self.parent?.view.window?.title = self.title!
     }
     
@@ -84,11 +78,6 @@ class PreferencefViewController: NSTabViewController {
     
     @IBAction func openGitHub(_ sender: Any) {
         let url = URL(string: "https://github.com/Lennard599")!
-        NSWorkspace.shared.open(url)
-    }
-    
-    @IBAction func openLicenses(_ sender: Any) {
-        let url = URL(string: "http://lennardkittner.ml")!
         NSWorkspace.shared.open(url)
     }
     

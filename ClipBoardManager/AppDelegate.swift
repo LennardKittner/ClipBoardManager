@@ -8,11 +8,9 @@
 
 import Cocoa
 
-//TODO: clear does not work
+//TODO: themed tool tips
 //TODO: fix sandbox
 //TODO: paste file bug
-//TODO: Test config
-//TODO: save clippings
 //TODO: add autostart
 //TODO: make universall
 //TODO: migrate to swiftUI
@@ -33,9 +31,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             button.image = NSImage(named:NSImage.Name("icon"))
         }
         
+        clipBoardHandler = ClipBoardHandler(historyCapacity: 10) // is set to the right value in applyCfg
         configHandler = ConfigHandler(onChange: applyCfg)
-        clipBoardHandler = ClipBoardHandler(configHandler: configHandler)
-        statusItem.menu = MainMenu(configHandler: configHandler, clipBoardHandler: clipBoardHandler)
+        statusItem.menu = MainMenu(clipBoardHandler: clipBoardHandler, clippingCount: configHandler.conf.clippingCount, width: configHandler.conf.previewWidth)
         menuDelegate = OnOpenMenuDelegate(onOpen: refrshMenu)
         statusItem.menu?.delegate = menuDelegate
         if let clippings = try? String(contentsOfFile: clippings.path) {
@@ -56,6 +54,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applyCfg(conf :ConfigData) {
         configHandler?.writeCfg()
+        statusItem.menu = MainMenu(clipBoardHandler: clipBoardHandler, clippingCount: conf.clippingCount, width: conf.previewWidth)
+        statusItem.menu?.delegate = menuDelegate
+        clipBoardHandler.historyCapacity = conf.clippingCount
         if conf.startAtLogin {
             setStartAtLogin()
         }

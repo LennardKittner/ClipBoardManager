@@ -26,7 +26,7 @@ class ClipItem: NSMenuItem {
     }
 
     required init(coder: NSCoder) {
-        clipBoardHandler = ClipBoardHandler(configHandler: ConfigHandler(onChange: {(c) in }))
+        clipBoardHandler = ClipBoardHandler(historyCapacity: 10)
         super.init(coder: coder)
     }
     
