@@ -48,6 +48,8 @@ class ClipItem: NSMenuItem {
     }
     
     @objc func copyEntry(_ sender: NSMenuItem?) {
-        clipBoardHandler.write(historyIndex: tag)
+        if entry != nil {
+            clipBoardHandler.write(entry: entry!)
+        }
     }
 }

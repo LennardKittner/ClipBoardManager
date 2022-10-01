@@ -36,7 +36,7 @@ class PreferencefViewController: NSTabViewController {
         }
         if gitHub != nil {
             let blue = NSColor.linkColor
-            let attributedStringColor = [NSAttributedStringKey.foregroundColor : blue];
+            let attributedStringColor = [NSAttributedString.Key.foregroundColor : blue];
             let title = NSAttributedString(string: "My GitHub", attributes: attributedStringColor)
             gitHub.attributedTitle = title
         }

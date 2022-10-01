@@ -10,8 +10,9 @@ import Cocoa
 
 class ClipBoardHandler {
     let clipBoard = NSPasteboard.general
+    var excludedTypes = ["com.apple.finder.noderef"]
     var oldChangeCount :Int!
-    var isWriting = false
+    var accessLock :NSLock
     var history :[CBElement]!
     private var _historyCapacity :Int
     var historyCapacity :Int {
@@ -28,33 +29,39 @@ class ClipBoardHandler {
         self._historyCapacity = historyCapacity
         oldChangeCount = clipBoard.changeCount
         history = []
+        accessLock = NSLock()
     }
     
     func read() -> CBElement {
+        accessLock.lock()
         if !hasChanged() {
+            accessLock.unlock()
             return history.first ?? CBElement(string: "", isFile: false, content: [:])
         }
         var content :[NSPasteboard.PasteboardType : Data] = [:]
         for t in clipBoard.types ?? [] {
-            if let data = clipBoard.data(forType: t) {
-                content[t] = data
+            if !excludedTypes.contains(t.rawValue) {
+                if let data = clipBoard.data(forType: t) {
+                    content[t] = data
+                }
             }
         }
         history.insert(CBElement(string: clipBoard.string(forType: NSPasteboard.PasteboardType.string) ?? "No Preview Found", isFile: content[NSPasteboard.PasteboardType.URL] != nil, content: content), at: 0)
         if history.count > historyCapacity {
             history.removeLast(history.count - historyCapacity)
         }
+        accessLock.unlock()
         return history.first!
     }
     
     func write(entry: CBElement) {
-        isWriting = true //TODO: thread save
+        accessLock.lock()
         clipBoard.clearContents()
         for (t, d) in entry.content {
             clipBoard.setData(d, forType: t)
         }
         oldChangeCount = clipBoard.changeCount
-        isWriting = false
+        accessLock.unlock()
     }
     
     func write(historyIndex: Int) {
@@ -66,7 +73,7 @@ class ClipBoardHandler {
     }
     
     func hasChanged() -> Bool {
-        if !isWriting && oldChangeCount != clipBoard.changeCount {
+        if oldChangeCount != clipBoard.changeCount {
             oldChangeCount = clipBoard.changeCount
             return true
         }

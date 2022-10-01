@@ -24,7 +24,6 @@ class MainMenu: NSMenu {
         let items = Array(count: clippingCount, elementCreator: ClipItem(clipBoardHandler: clipBoardHandler))
         for i in 0..<items.count {
             items[i].isHidden = true
-            items[i].tag = i
             addItem(items[i])
         }
 

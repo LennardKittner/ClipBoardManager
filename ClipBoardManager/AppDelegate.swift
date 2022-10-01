@@ -9,10 +9,7 @@
 import Cocoa
 
 //TODO: themed tool tips
-//TODO: fix sandbox
-//TODO: paste file bug
 //TODO: add autostart
-//TODO: make universall
 //TODO: migrate to swiftUI
 
 @NSApplicationMain
@@ -80,7 +77,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
     @objc func showPreferences(_ sender: Any?) {
         if (preferencesController == nil) {
-            let storyboard = NSStoryboard(name: NSStoryboard.Name(rawValue: "Preferences"), bundle: nil)
+            let storyboard = NSStoryboard(name: NSStoryboard.Name("Preferences"), bundle: nil)
             preferencesController = storyboard.instantiateInitialController() as? NSWindowController
         }
         

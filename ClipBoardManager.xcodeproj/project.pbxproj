@@ -111,7 +111,6 @@
 				490D502C21235BFA00DA6CA3 /* Sources */,
 				490D502D21235BFA00DA6CA3 /* Frameworks */,
 				490D502E21235BFA00DA6CA3 /* Resources */,
-				4975E02C213B69BA0048683D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -129,11 +128,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0940;
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 1340;
 				ORGANIZATIONNAME = "Lennard Kittner";
 				TargetAttributes = {
 					490D502F21235BFA00DA6CA3 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1340;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 0;
@@ -172,22 +172,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		4975E02C213B69BA0048683D /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "#!/bin/bash\n\norigin_helper_path=\"$BUILT_PRODUCTS_DIR/$FRAMEWORKS_FOLDER_PATH/LaunchAtLogin.framework/Resources/LaunchAtLoginHelper.app\"\nhelper_dir=\"$BUILT_PRODUCTS_DIR/$CONTENTS_FOLDER_PATH/Library/LoginItems\"\nhelper_path=\"$helper_dir/LaunchAtLoginHelper.app\"\n\nrm -rf \"$helper_path\"\nmkdir -p \"$helper_dir\"\ncp -rf \"$origin_helper_path\" \"$helper_dir/\"\n\ndefaults write \"$helper_path/Contents/Info\" CFBundleIdentifier -string \"$PRODUCT_BUNDLE_IDENTIFIER-LaunchAtLoginHelper\"\ncodesign --force --entitlements=\"$CODE_SIGN_ENTITLEMENTS\" --sign=\"$EXPANDED_CODE_SIGN_IDENTITY_NAME\" \"$helper_path\"\n\nif [[ $CONFIGURATION == \"Release\" ]]; then\nrm -rf \"$origin_helper_path\"\nrm \"$(dirname \"$origin_helper_path\")/copy-helper.sh\"\nfi\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		490D502C21235BFA00DA6CA3 /* Sources */ = {
@@ -248,6 +232,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -308,6 +293,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -340,6 +326,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ClipBoardManager/ClipBoardManager.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = VLCLT2XQF5;
@@ -355,7 +342,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Lennard.ClipBoardManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -364,6 +351,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ClipBoardManager/ClipBoardManager.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = VLCLT2XQF5;
@@ -379,7 +367,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Lennard.ClipBoardManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
