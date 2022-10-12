@@ -8,6 +8,7 @@
 
 import Cocoa
 
+//TODO: delete entries with rightclick
 //TODO: themed tool tips
 //TODO: add autostart
 //TODO: migrate to swiftUI
