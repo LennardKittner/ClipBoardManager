@@ -15,6 +15,7 @@
 		DB14E48D28F7401300D6770B /* About.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB14E48828F7401300D6770B /* About.swift */; };
 		DB14E48E28F7401300D6770B /* ConfigHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB14E48928F7401300D6770B /* ConfigHandler.swift */; };
 		DB14E48F28F7401300D6770B /* ToolBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB14E48A28F7401300D6770B /* ToolBarView.swift */; };
+		DB14E49328F741B000D6770B /* ClipMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB14E49228F741AF00D6770B /* ClipMenuItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,8 @@
 		DB14E48828F7401300D6770B /* About.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = About.swift; sourceTree = "<group>"; };
 		DB14E48928F7401300D6770B /* ConfigHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigHandler.swift; sourceTree = "<group>"; };
 		DB14E48A28F7401300D6770B /* ToolBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolBarView.swift; sourceTree = "<group>"; };
+		DB14E49228F741AF00D6770B /* ClipMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipMenuItem.swift; sourceTree = "<group>"; };
+		DB14E49628F75A0200D6770B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,8 +63,10 @@
 		DB14E47528F73F5200D6770B /* ClipBoardManager */ = {
 			isa = PBXGroup;
 			children = (
+				DB14E49628F75A0200D6770B /* Info.plist */,
 				DB14E48528F73F7200D6770B /* Settings */,
 				DB14E47628F73F5200D6770B /* ClipBoardManagerApp.swift */,
+				DB14E49228F741AF00D6770B /* ClipMenuItem.swift */,
 				DB14E47A28F73F5400D6770B /* Assets.xcassets */,
 				DB14E47C28F73F5400D6770B /* ClipBoardManager.entitlements */,
 				DB14E47D28F73F5400D6770B /* Preview Content */,
@@ -163,6 +168,7 @@
 				DB14E48E28F7401300D6770B /* ConfigHandler.swift in Sources */,
 				DB14E48C28F7401300D6770B /* ConfigData.swift in Sources */,
 				DB14E48D28F7401300D6770B /* About.swift in Sources */,
+				DB14E49328F741B000D6770B /* ClipMenuItem.swift in Sources */,
 				DB14E48B28F7401300D6770B /* Settings.swift in Sources */,
 				DB14E47728F73F5200D6770B /* ClipBoardManagerApp.swift in Sources */,
 			);
@@ -293,6 +299,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ClipBoardManager/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -331,6 +338,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ClipBoardManager/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

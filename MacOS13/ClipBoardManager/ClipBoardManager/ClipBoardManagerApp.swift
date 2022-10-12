@@ -13,13 +13,39 @@ struct ClipBoardManagerApp: App {
     
     var body: some Scene {
         WindowGroup("") {
-            ToolBarView()
-                .environmentObject(configHandler)
+            Text("placeholder")
         }
         .commands {
             CommandMenu("My Top Menu") {
-                Button("Sub Menu Item") { print("You pressed sub menu.") }
+                ClipMenuItem()
+                Divider()
+                Button("Clear") {
+                    print("clear")
+                }
+                Divider()
+                Button("Preferences") {
+                    OpenWindows.Settings.open()
+                }
+                Divider()
+                Button("Quit") {
+                    NSApplication.shared.terminate(nil)
+                }
             }
+        }
+        
+        WindowGroup("") {
+            ToolBarView()
+                .environmentObject(configHandler)
+        }.handlesExternalEvents(matching: Set(arrayLiteral: "Settings"))
+    }
+}
+
+enum OpenWindows: String, CaseIterable {
+    case Settings = "Settings"
+
+    func open() {
+        if let url = URL(string: "ClipBoardManager://\(self.rawValue)") {
+            NSWorkspace.shared.open(url)
         }
     }
 }
