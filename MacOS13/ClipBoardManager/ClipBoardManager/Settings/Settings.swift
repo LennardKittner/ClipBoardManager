@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+//TODO: check input with formater or in onEditingChanged
 struct Settings: View {
     @EnvironmentObject private var configHandler :ConfigHandler
     
@@ -22,7 +23,7 @@ struct Settings: View {
                 Text("Number Clippings: ")
                 TextField("clippings", value: $configHandler.conf.clippings, formatter: NumberFormatter(), onEditingChanged: {focus in
                     if !focus {
-                        
+                        configHandler.submit.toggle()
                     }
                 })
                 .frame(width: 100)
@@ -32,7 +33,7 @@ struct Settings: View {
                     .padding(.trailing, 14)
                 TextField("Refresh intervall", value: $configHandler.conf.refreshIntervall, formatter: floatFormater, onEditingChanged: {focus in
                     if !focus {
-                        
+                        configHandler.submit.toggle()
                     }
                 })
                 .frame(width: 100)
@@ -43,7 +44,7 @@ struct Settings: View {
                     .padding(.trailing, 22.5)
                 TextField("Preview length", value: $configHandler.conf.previewLength, formatter: NumberFormatter(), onEditingChanged: {focus in
                     if !focus {
-                        
+                        configHandler.submit.toggle()
                     }
                 })
                 .frame(width: 100)
@@ -56,6 +57,8 @@ struct Settings: View {
                 }
                 .toggleStyle(CheckboxToggleStyle())
             }
+        }.onDisappear {
+            configHandler.submit.toggle()
         }
         .padding(.leading, -95.0)
     }

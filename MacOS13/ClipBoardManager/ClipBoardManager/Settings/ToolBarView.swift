@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ToolBarView: View {
-    @StateObject private var configHandler = ConfigHandler()
+    @EnvironmentObject private var configHandler :ConfigHandler
 
     private let tabs = ["About", "Settings"]
     @State private var currentTab = 0

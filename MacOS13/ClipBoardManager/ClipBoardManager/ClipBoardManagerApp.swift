@@ -7,44 +7,48 @@
 
 import SwiftUI
 
+var configHandler = ConfigHandler()
+var clipBoardHandler = ClipBoardHandler(configHandler: configHandler)
+
 @main
 struct ClipBoardManagerApp: App {
-    @StateObject private var configHandler = ConfigHandler()
-    @StateObject private var clipBoardHandler = ClipBoardHandler(historyCapacity: 10)
-    
+    @StateObject private var _configHandler = configHandler
+    @StateObject private var _clipBoardHandler = clipBoardHandler
+        
     var body: some Scene {
         WindowGroup("") {
             Text("placeholder")
         }
         .commands {
             CommandMenu("My Top Menu") {
-                ForEach(clipBoardHandler.history.indices) { id in
-                    ClipMenuItem(clip: CBElement(string: clipBoardHandler.history[id].string, isFile: clipBoardHandler.history[id].isFile, content: clipBoardHandler.history[id].content), maxLength: 40)
-                        .environmentObject(clipBoardHandler)
+                ForEach(_clipBoardHandler.history.indices) { id in
+                    ClipMenuItem(clip: CBElement(string: _clipBoardHandler.history[id].string, isFile: _clipBoardHandler.history[id].isFile, content: _clipBoardHandler.history[id].content), maxLength: _configHandler.conf.previewLength)
+                        .environmentObject(_clipBoardHandler)
                 }
                 Divider()
                 Button("Clear") {
-                    print("clear")
-                    NSApplication.shared.mainWindow!.toolbarStyle = .preference
-                }
+                    _clipBoardHandler.clear()
+                    print($_configHandler.conf.previewLength.wrappedValue)
+                    //NSApplication.shared.mainWindow!.toolbarStyle = .preference
+                }.keyboardShortcut("l")
                 Divider()
                 Button("Preferences") {
-                    ToolBarView()
-                        .environmentObject(configHandler)
-                        .openNewWindow()
-//                    NSApplication.shared.mainWindow?.close()
-//                    OpenWindows.Settings.open()
-                }
+//                    ToolBarView()
+//                        .environmentObject(configHandler)
+//                        .openNewWindow()
+                    NSApplication.shared.mainWindow?.close()
+                    OpenWindows.Settings.open()
+                }.keyboardShortcut(",")
                 Divider()
                 Button("Quit") {
                     NSApplication.shared.terminate(nil)
-                }
+                }.keyboardShortcut("q")
             }
         }
         
         WindowGroup("") {
             ToolBarView()
-                .environmentObject(configHandler)
+                .environmentObject(_configHandler)
         }.handlesExternalEvents(matching: Set(arrayLiteral: "Settings"))
     }
 }

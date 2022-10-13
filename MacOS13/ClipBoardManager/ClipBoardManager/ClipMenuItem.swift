@@ -15,6 +15,7 @@ struct ClipMenuItem: View {
     var body: some View {
         Button(calcTitel(clip: clip, maxLength: maxLength)) {
             clipBoardHandler.write(entry: clip)
+            print(maxLength)
         }
         .help(clip.string)
     }
@@ -37,6 +38,6 @@ struct ClipMenuItem: View {
 struct ClipMenuItem_Previews: PreviewProvider {
     static var previews: some View {
         ClipMenuItem(clip: CBElement(), maxLength: 40)
-            .environmentObject(ClipBoardHandler(historyCapacity: 1))
+            .environmentObject(ClipBoardHandler(configHandler: ConfigHandler()))
     }
 }

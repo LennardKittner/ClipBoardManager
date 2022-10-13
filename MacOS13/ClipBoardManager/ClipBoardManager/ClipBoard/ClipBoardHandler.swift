@@ -7,34 +7,47 @@
 //
 
 import Cocoa
+import Combine
 
 class ClipBoardHandler :ObservableObject {
+    private let clippingsPath = URL(fileURLWithPath: "\(FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0].path)/ClipBoardManager/Clippings.json")
     private let clipBoard = NSPasteboard.general
+    private let configHandler :ConfigHandler
     private var excludedTypes = ["com.apple.finder.noderef"]
     private var oldChangeCount :Int!
     private var accessLock :NSLock
     @Published var history :[CBElement]!
     private var timer :Timer!
-
-    private var _historyCapacity :Int
-    var historyCapacity :Int {
-        get { return _historyCapacity }
-        set {
-            _historyCapacity = newValue
-            if history.count > _historyCapacity {
-                history.removeLast(history.count - _historyCapacity)
-            }
-        }
-    }
+    private var configSink :Cancellable!
+    var historyCapacity :Int
     
-    init(historyCapacity: Int) {
-        _historyCapacity = historyCapacity
+    init(configHandler: ConfigHandler) {
+        self.configHandler = configHandler
+        historyCapacity = configHandler.conf.clippings
         oldChangeCount = clipBoard.changeCount
         history = []
         accessLock = NSLock()
-        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(refreshClipBoard(_:)), userInfo: nil, repeats: true)
+        if let clippings = try? String(contentsOfFile: clippingsPath.path) {
+            loadHistoryFromJSON(JSON: clippings)
+        }
+        NotificationCenter.default.addObserver(forName: NSApplication.willTerminateNotification, object: nil, queue: .main) { _ in
+            let JSON = self.getHistoryAsJSON()
+            try? JSON.write(toFile: self.clippingsPath.path, atomically: true, encoding: String.Encoding.utf8)
+        }
+        configSink = configHandler.$submit.sink(receiveValue: { _ in
+            print(self.configHandler.conf.clippings)
+            self.historyCapacity = self.configHandler.conf.clippings
+            if self.history.count > self.historyCapacity {
+                self.history.removeLast(self.history.count - self.historyCapacity)
+            }
+            
+            if self.timer?.timeInterval ?? -1 != TimeInterval(self.configHandler.conf.refreshIntervall) && self.configHandler.conf.refreshIntervall > 0 {
+                self.timer?.invalidate()
+                self.timer = Timer.scheduledTimer(timeInterval: TimeInterval(self.configHandler.conf.refreshIntervall), target: self, selector: #selector(self.refreshClipBoard(_:)), userInfo: nil, repeats: true)
+            }
+        })
     }
-    
+        
     @objc func refreshClipBoard(_ sender: Any?) {
         read()
     }
