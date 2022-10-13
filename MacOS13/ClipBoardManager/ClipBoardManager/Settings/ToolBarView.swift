@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ToolBarView: View {
-    @EnvironmentObject private var configHandler :ConfigHandler
-    
+    @StateObject private var configHandler = ConfigHandler()
+
     private let tabs = ["About", "Settings"]
     @State private var currentTab = 0
     @State private var showText = true
@@ -41,6 +41,18 @@ struct ToolBarView: View {
 struct ToolBarView_Previews: PreviewProvider {
     static var previews: some View {
         ToolBarView()
-            .environmentObject(ConfigHandler())
+    }
+}
+
+struct ToolbarView: View {
+    private let tabs = ["About", "Settings"]
+    @State private var currentTab = 0
+
+    var body: some View {
+        Picker("", selection: $currentTab) {
+            ForEach(tabs.indices) { i in
+                Text(tabs[i]).tag(i)
+            }
+        }
     }
 }

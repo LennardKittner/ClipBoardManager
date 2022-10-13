@@ -10,6 +10,7 @@ import SwiftUI
 @main
 struct ClipBoardManagerApp: App {
     @StateObject private var configHandler = ConfigHandler()
+    @StateObject private var clipBoardHandler = ClipBoardHandler(historyCapacity: 10)
     
     var body: some Scene {
         WindowGroup("") {
@@ -17,14 +18,22 @@ struct ClipBoardManagerApp: App {
         }
         .commands {
             CommandMenu("My Top Menu") {
-                ClipMenuItem()
+                ForEach(clipBoardHandler.history.indices) { id in
+                    ClipMenuItem(clip: CBElement(string: clipBoardHandler.history[id].string, isFile: clipBoardHandler.history[id].isFile, content: clipBoardHandler.history[id].content), maxLength: 40)
+                        .environmentObject(clipBoardHandler)
+                }
                 Divider()
                 Button("Clear") {
                     print("clear")
+                    NSApplication.shared.mainWindow!.toolbarStyle = .preference
                 }
                 Divider()
                 Button("Preferences") {
-                    OpenWindows.Settings.open()
+                    ToolBarView()
+                        .environmentObject(configHandler)
+                        .openNewWindow()
+//                    NSApplication.shared.mainWindow?.close()
+//                    OpenWindows.Settings.open()
                 }
                 Divider()
                 Button("Quit") {
