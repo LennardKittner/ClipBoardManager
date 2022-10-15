@@ -7,15 +7,35 @@
 
 import SwiftUI
 
+//TODO: Compress Icons and only save one verison
+
 struct ClipMenuItem: View {
     @EnvironmentObject private var clipBoardHandler :ClipBoardHandler
     var clip :CBElement
     var maxLength :Int
+    private var image :Image
+    
+    init(clip: CBElement, maxLength: Int) {
+        self.clip = clip
+        self.maxLength = maxLength
+        if clip.content[NSPasteboard.PasteboardType("com.apple.icns")] == nil && clip.isFile{
+            image = Image(systemName: "doc.fill")
+        } else {
+            var nsImage = NSImage(data: clip.content[NSPasteboard.PasteboardType("com.apple.icns")] ?? Data()) ?? NSImage()
+            nsImage.size = NSSize(width: 15, height: 15)
+            image = Image(nsImage: nsImage)
+        }
+    }
     
     var body: some View {
-        Button(calcTitel(clip: clip, maxLength: maxLength)) {
+        Button(action: {
             clipBoardHandler.write(entry: clip)
             print(maxLength)
+        }) {
+            Text(calcTitel(clip: clip, maxLength: maxLength))
+            image
+                .resizable()
+                .frame(width: 15, height: 15)
         }
         .help(clip.string)
     }
@@ -27,9 +47,6 @@ struct ClipMenuItem: View {
         if menuTitel.count > maxLength {
             let index = menuTitel.index(menuTitel.startIndex, offsetBy: maxLength-1)
             menuTitel = menuTitel[..<index] + "..."
-        }
-        if clip.isFile {
-            
         }
         return menuTitel
     }

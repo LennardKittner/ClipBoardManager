@@ -14,6 +14,7 @@ class ClipBoardHandler :ObservableObject {
     private let clipBoard = NSPasteboard.general
     private let configHandler :ConfigHandler
     private var excludedTypes = ["com.apple.finder.noderef"]
+    private var extraTypes = [NSPasteboard.PasteboardType("com.apple.icns")]
     private var oldChangeCount :Int!
     private var accessLock :NSLock
     @Published var history :[CBElement]!
@@ -35,7 +36,6 @@ class ClipBoardHandler :ObservableObject {
             try? JSON.write(toFile: self.clippingsPath.path, atomically: true, encoding: String.Encoding.utf8)
         }
         configSink = configHandler.$submit.sink(receiveValue: { _ in
-            print(self.configHandler.conf.clippings)
             self.historyCapacity = self.configHandler.conf.clippings
             if self.history.count > self.historyCapacity {
                 self.history.removeLast(self.history.count - self.historyCapacity)
@@ -59,17 +59,21 @@ class ClipBoardHandler :ObservableObject {
             return history.first ?? CBElement(string: "", isFile: false, content: [:])
         }
         var content :[NSPasteboard.PasteboardType : Data] = [:]
-        for t in clipBoard.types ?? [] {
+        var types = clipBoard.types
+        types?.append(contentsOf: extraTypes)
+        for t in types ?? [] {
             if !excludedTypes.contains(t.rawValue) {
                 if let data = clipBoard.data(forType: t) {
                     content[t] = data
                 }
             }
         }
+        
         history.insert(CBElement(string: clipBoard.string(forType: NSPasteboard.PasteboardType.string) ?? "No Preview Found", isFile: content[NSPasteboard.PasteboardType.URL] != nil, content: content), at: 0)
         if history.count > historyCapacity {
             history.removeLast(history.count - historyCapacity)
         }
+        logPasetBoard()
         accessLock.unlock()
         return history.first!
     }
@@ -145,5 +149,6 @@ class ClipBoardHandler :ObservableObject {
         print(logPB("tiff", NSPasteboard.PasteboardType.tiff))
         print(logPB("color", NSPasteboard.PasteboardType.color))
         print(logPB("font", NSPasteboard.PasteboardType.font))
+        print(logPB("com.apple.icns", NSPasteboard.PasteboardType("com.apple.icns")))
     }
 }
