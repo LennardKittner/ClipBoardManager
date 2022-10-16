@@ -10,11 +10,13 @@ import SwiftUI
 var configHandler = ConfigHandler()
 var clipBoardHandler = ClipBoardHandler(configHandler: configHandler)
 
+//TODO: sometimes icons are not read
 @main
 struct ClipBoardManagerApp: App {
     @StateObject private var _configHandler = configHandler
     @StateObject private var _clipBoardHandler = clipBoardHandler
-        
+    @State private var curretnTab = 0
+    
     var body: some Scene {
         WindowGroup("") {
             Text("placeholder")
@@ -28,36 +30,18 @@ struct ClipBoardManagerApp: App {
                 Divider()
                 Button("Clear") {
                     _clipBoardHandler.clear()
-                    //NSApplication.shared.mainWindow!.toolbarStyle = .preference
                 }.keyboardShortcut("l")
                 Divider()
                 Button("Preferences") {
-//                    ToolBarView()
-//                        .environmentObject(configHandler)
-//                        .openNewWindow()
-                    NSApplication.shared.mainWindow?.close()
-                    OpenWindows.Settings.open()
+                    TabView(currentTab: $curretnTab)
+                        .environmentObject(configHandler)
+                        .openNewWindowWithToolbar(title: "ClipBoardManager", rect: NSRect(x: 0, y: 0, width: 450, height: 150), style: [.closable, .titled], toolbar: Toolbar(tabs: ["About", "Settings"], currentTab: $curretnTab))
                 }.keyboardShortcut(",")
                 Divider()
                 Button("Quit") {
                     NSApplication.shared.terminate(nil)
                 }.keyboardShortcut("q")
             }
-        }
-        
-        WindowGroup("") {
-            ToolBarView()
-                .environmentObject(_configHandler)
-        }.handlesExternalEvents(matching: Set(arrayLiteral: "Settings"))
-    }
-}
-
-enum OpenWindows: String, CaseIterable {
-    case Settings = "Settings"
-
-    func open() {
-        if let url = URL(string: "ClipBoardManager://\(self.rawValue)") {
-            NSWorkspace.shared.open(url)
         }
     }
 }
