@@ -35,6 +35,7 @@ class ConfigHandler :ObservableObject {
     }
     
     private func applySettings(conf: ConfigData) {
+        
     }
 }
 

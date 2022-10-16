@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import Combine
 
 //TODO: check input with formater or in onEditingChanged
 struct Settings: View {
     @EnvironmentObject private var configHandler :ConfigHandler
+    @State private var error = [false, false, false]
     
     let floatFormater :NumberFormatter = {
         let formater = NumberFormatter()
@@ -17,37 +19,55 @@ struct Settings: View {
         return formater
     }()
     
+    func validatePositiveInt(_ string: String) -> Int? {
+        if let num = Int(string) {
+            if num > 0 {
+                return num
+            }
+        }
+        return nil
+    }
+    
+    func validatePositiveFloat(_ string: String) -> Float? {
+        if let num = Float(string) {
+            if num > 0 {
+                return num
+            }
+        }
+        return nil
+    }
+    
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
                 Text("Number Clippings: ")
-                TextField("clippings", value: $configHandler.conf.clippings, formatter: NumberFormatter(), onEditingChanged: {focus in
-                    if !focus {
-                        configHandler.submit.toggle()
-                    }
-                })
-                .frame(width: 100)
+                ValidatedTextField(content: $configHandler.conf.clippings, error: $error[0], validate: validatePositiveInt(_:), onFocusLost: {configHandler.submit.toggle()})
+                    .frame(width: 100)
+                if error[0] {
+//                    Text("Please enter a positive number")
+//                        .foregroundColor(Color.red)
+                }
             }
             HStack {
                 Text("Refresh intervall:")
                     .padding(.trailing, 14)
-                TextField("Refresh intervall", value: $configHandler.conf.refreshIntervall, formatter: floatFormater, onEditingChanged: {focus in
-                    if !focus {
-                        configHandler.submit.toggle()
-                    }
-                })
-                .frame(width: 100)
+                ValidatedTextField(content: $configHandler.conf.refreshIntervall, error: $error[1], validate: validatePositiveFloat(_:), onFocusLost: {configHandler.submit.toggle()})
+                    .frame(width: 100)
                 Text("seconds")
+                if error[1] {
+//                    Text("Please enter a positive number")
+//                        .foregroundColor(Color.red)
+                }
             }
             HStack {
                 Text("Preview length:")
                     .padding(.trailing, 22.5)
-                TextField("Preview length", value: $configHandler.conf.previewLength, formatter: NumberFormatter(), onEditingChanged: {focus in
-                    if !focus {
-                        configHandler.submit.toggle()
-                    }
-                })
-                .frame(width: 100)
+                ValidatedTextField(content: $configHandler.conf.previewLength, error: $error[2], validate: validatePositiveInt(_:), onFocusLost: {configHandler.submit.toggle()})
+                    .frame(width: 100)
+                if error[2] {
+//                    Text("Please enter a positive number")
+//                        .foregroundColor(Color.red)
+                }
             }
             HStack {
                 Text("Start at login:")
