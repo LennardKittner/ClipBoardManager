@@ -28,7 +28,6 @@ struct ClipBoardManagerApp: App {
                 Divider()
                 Button("Clear") {
                     _clipBoardHandler.clear()
-                    print($_configHandler.conf.previewLength.wrappedValue)
                     //NSApplication.shared.mainWindow!.toolbarStyle = .preference
                 }.keyboardShortcut("l")
                 Divider()

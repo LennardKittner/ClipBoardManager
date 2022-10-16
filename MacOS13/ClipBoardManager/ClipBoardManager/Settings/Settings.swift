@@ -8,7 +8,7 @@
 import SwiftUI
 import Combine
 
-//TODO: check input with formater or in onEditingChanged
+
 struct Settings: View {
     @EnvironmentObject private var configHandler :ConfigHandler
     @State private var error = [false, false, false]

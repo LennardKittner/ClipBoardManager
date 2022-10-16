@@ -68,12 +68,17 @@ class ClipBoardHandler :ObservableObject {
                 }
             }
         }
-        
-        history.insert(CBElement(string: clipBoard.string(forType: NSPasteboard.PasteboardType.string) ?? "No Preview Found", isFile: content[NSPasteboard.PasteboardType.URL] != nil, content: content), at: 0)
+        let isFile = content[NSPasteboard.PasteboardType.fileURL] != nil || content[NSPasteboard.PasteboardType.URL] != nil
+        let string = clipBoard.string(forType: NSPasteboard.PasteboardType.string)
+        // is compression necessary?
+        if isFile && content[NSPasteboard.PasteboardType("com.apple.icns")] != nil {
+            let image = NSBitmapImageRep(data: NSImage(data: content[NSPasteboard.PasteboardType("com.apple.icns")] ?? Data())?.resizeImage(tamanho: NSSize(width: 15, height: 15)).tiffRepresentation ?? Data())?.representation(using: .png, properties: [:])
+            content[NSPasteboard.PasteboardType("com.apple.icns")] = image
+        }
+        history.insert(CBElement(string: string ?? "No Preview Found", isFile: isFile, content: content), at: 0)
         if history.count > historyCapacity {
             history.removeLast(history.count - historyCapacity)
         }
-        logPasetBoard()
         accessLock.unlock()
         return history.first!
     }
