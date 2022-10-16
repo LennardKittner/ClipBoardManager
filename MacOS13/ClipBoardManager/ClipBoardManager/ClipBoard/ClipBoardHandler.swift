@@ -68,10 +68,10 @@ class ClipBoardHandler :ObservableObject {
                 }
             }
         }
-        let isFile = content[NSPasteboard.PasteboardType.fileURL] != nil || content[NSPasteboard.PasteboardType.URL] != nil
+        let isFile = content[NSPasteboard.PasteboardType.fileURL] != nil || content[NSPasteboard.PasteboardType.tiff] != nil
         let string = clipBoard.string(forType: NSPasteboard.PasteboardType.string)
         // is compression necessary?
-        if isFile && content[NSPasteboard.PasteboardType("com.apple.icns")] != nil {
+        if content[NSPasteboard.PasteboardType("com.apple.icns")] != nil {
             let image = NSBitmapImageRep(data: NSImage(data: content[NSPasteboard.PasteboardType("com.apple.icns")] ?? Data())?.resizeImage(tamanho: NSSize(width: 15, height: 15)).tiffRepresentation ?? Data())?.representation(using: .png, properties: [:])
             content[NSPasteboard.PasteboardType("com.apple.icns")] = image
         }

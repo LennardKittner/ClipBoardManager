@@ -18,7 +18,13 @@ struct ClipMenuItem: View {
         self.clip = clip
         self.maxLength = maxLength
         if clip.content[NSPasteboard.PasteboardType("com.apple.icns")] == nil && clip.isFile {
-            image = Image(systemName: "doc.fill")
+            if let tiff = clip.content[NSPasteboard.PasteboardType.tiff] {
+                let nsImage = NSImage(data: tiff) ?? NSImage()
+                nsImage.size = NSSize(width: 15, height: 15)
+                image = Image(nsImage: nsImage)
+            } else {
+                image = Image(systemName: "doc.fill")
+            }
         } else if clip.isFile {
             let nsImage = NSImage(data: clip.content[NSPasteboard.PasteboardType("com.apple.icns")] ?? Data()) ?? NSImage()
             nsImage.size = NSSize(width: 15, height: 15)
