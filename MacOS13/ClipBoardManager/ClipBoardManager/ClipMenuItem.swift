@@ -12,40 +12,38 @@ struct ClipMenuItem: View {
     @EnvironmentObject private var clipBoardHandler :ClipBoardHandler
     var clip :CBElement
     var maxLength :Int
-    private var image :Image
     
     init(clip: CBElement, maxLength: Int) {
         self.clip = clip
         self.maxLength = maxLength
-        if clip.content[NSPasteboard.PasteboardType("com.apple.icns")] == nil && clip.isFile {
-            if let tiff = clip.content[NSPasteboard.PasteboardType.tiff] {
-                let nsImage = NSImage(data: tiff) ?? NSImage()
-                nsImage.size = NSSize(width: 15, height: 15)
-                image = Image(nsImage: nsImage)
-            } else {
-                image = Image(systemName: "doc.fill")
-            }
-        } else if clip.isFile {
-            let nsImage = NSImage(data: clip.content[NSPasteboard.PasteboardType("com.apple.icns")] ?? Data()) ?? NSImage()
-            nsImage.size = NSSize(width: 15, height: 15)
-            image = Image(nsImage: nsImage)
-        } else {
-            let nsImage = NSImage()
-            nsImage.size = NSSize(width: 15, height: 15)
-            image = Image(nsImage: nsImage)
-        }
     }
     
     var body: some View {
         Button(action: {
             clipBoardHandler.write(entry: clip)
         }) {
-            Text(calcTitel(clip: clip, maxLength: maxLength))
-            image
-                .resizable()
-                .frame(width: 15, height: 15)
+            HStack {
+                calcImage(clip: clip)
+                    .resizable()
+                    .frame(width: 15, height: 15)
+                Text(calcTitel(clip: clip, maxLength: maxLength))
+            }
         }
         .help(clip.string)
+    }
+    
+    private func calcImage(clip: CBElement) -> Image {
+        if clip.isFile && clip.content[NSPasteboard.PasteboardType("com.apple.icns")] == nil && clip.content[NSPasteboard.PasteboardType.tiff] == nil{
+            return Image(systemName: "doc.fill")
+        }
+        var nsImage = NSImage()
+        if let image = clip.content[NSPasteboard.PasteboardType.tiff] {
+            nsImage = NSImage(data: image) ?? NSImage()
+        } else {
+            nsImage = NSImage(data: clip.content[NSPasteboard.PasteboardType("com.apple.icns")] ?? Data()) ?? NSImage()
+        }
+        nsImage.size = NSSize(width: 15, height: 15)
+        return Image(nsImage: nsImage)
     }
     
     private func calcTitel(clip: CBElement, maxLength: Int) -> String {

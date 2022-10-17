@@ -10,7 +10,10 @@ import SwiftUI
 var configHandler = ConfigHandler()
 var clipBoardHandler = ClipBoardHandler(configHandler: configHandler)
 
-//TODO: sometimes icons are not read
+//TODO: menuextra
+//TODO: autostart
+//TODO: rightclick to delete
+//TODO: Tooltips
 @main
 struct ClipBoardManagerApp: App {
     @StateObject private var _configHandler = configHandler
