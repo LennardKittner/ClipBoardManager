@@ -27,13 +27,23 @@ struct ClipMenuItem: View {
                     .resizable()
                     .frame(width: 15, height: 15)
                 Text(calcTitel(clip: clip, maxLength: maxLength))
+                    //.font(.monospaced(.body)())
+                // Does not work :/
+//                Text(clip.string)
+//                    .lineLimit(1)
+//                    .truncationMode(.tail)
+//                    .frame(width: 30)
             }
         }
-        .help(clip.string)
+        // Does not work :/
+//        .onHover(perform: {bool in
+//            print(bool)
+//        })
+//        .help(clip.string)
     }
     
     private func calcImage(clip: CBElement) -> Image {
-        if clip.isFile && clip.content[NSPasteboard.PasteboardType("com.apple.icns")] == nil && clip.content[NSPasteboard.PasteboardType.tiff] == nil{
+        if clip.isFile && clip.content[NSPasteboard.PasteboardType("com.apple.icns")] == nil && clip.content[NSPasteboard.PasteboardType.tiff] == nil {
             return Image(systemName: "doc.fill")
         }
         var nsImage = NSImage()
@@ -50,10 +60,9 @@ struct ClipMenuItem: View {
         var menuTitel = clip.string
         menuTitel = menuTitel.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         menuTitel = menuTitel.replacingOccurrences(of: "\n", with: "")
-        if menuTitel.count > maxLength {
-            let index = menuTitel.index(menuTitel.startIndex, offsetBy: maxLength-1)
-            menuTitel = menuTitel[..<index] + "..."
-        }
+        let suffix = menuTitel.count > maxLength ? "..." : ""
+        menuTitel = menuTitel.padding(toLength: maxLength, withPad: " ", startingAt: 0)
+        menuTitel.append(suffix)
         return menuTitel
     }
 }
@@ -64,3 +73,5 @@ struct ClipMenuItem_Previews: PreviewProvider {
             .environmentObject(ClipBoardHandler(configHandler: ConfigHandler()))
     }
 }
+
+// if clip.isFile && clip.content[NSPasteboard.PasteboardType("com.apple.icns")] == nil && clip.content[NSPasteboard.PasteboardType.tiff] == nil {if clip.isFile && clip.content[NSPasteboard.PasteboardType("com.apple.icns")] == nil && clip.content[NSPasteboard.PasteboardType.tiff] == nil {if clip.isFile && clip.content[NSPasteboard.PasteboardType("com.apple.icns")] == nil && clip.content[NSPasteboard.PasteboardType.tiff] == nil {if clip.isFile && clip.content[NSPasteboard.PasteboardType("com.apple.icns")] == nil && clip.content[NSPasteboard.PasteboardType.tiff] == nil {if clip.isFile && clip.content[NSPasteboard.PasteboardType("com.apple.icns")] == nil && clip.content[NSPasteboard.PasteboardType.tiff] == nil {if clip.isFile && clip.content[NSPasteboard.PasteboardType("com.apple.icns")] == nil && clip.content[NSPasteboard.PasteboardType.tiff] == nil {

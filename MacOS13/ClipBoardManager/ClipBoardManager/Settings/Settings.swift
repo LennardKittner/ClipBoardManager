@@ -39,14 +39,14 @@ struct Settings: View {
     
     var body: some View {
         VStack(alignment: .leading) {
+            if error.reduce(false, {$0 || $1}) {
+            Text("Please enter a positive \(error[1] ? "" : "whole ")number")
+                    .foregroundColor(.red)
+            }
             HStack {
                 Text("Number Clippings: ")
                 ValidatedTextField(content: $configHandler.conf.clippings, error: $error[0], validate: validatePositiveInt(_:), onFocusLost: {configHandler.submit.toggle()})
                     .frame(width: 100)
-                if error[0] {
-//                    Text("Please enter a positive number")
-//                        .foregroundColor(Color.red)
-                }
             }
             HStack {
                 Text("Refresh intervall:")
@@ -54,20 +54,12 @@ struct Settings: View {
                 ValidatedTextField(content: $configHandler.conf.refreshIntervall, error: $error[1], validate: validatePositiveFloat(_:), onFocusLost: {configHandler.submit.toggle()})
                     .frame(width: 100)
                 Text("seconds")
-                if error[1] {
-//                    Text("Please enter a positive number")
-//                        .foregroundColor(Color.red)
-                }
             }
             HStack {
                 Text("Preview length:")
                     .padding(.trailing, 22.5)
                 ValidatedTextField(content: $configHandler.conf.previewLength, error: $error[2], validate: validatePositiveInt(_:), onFocusLost: {configHandler.submit.toggle()})
                     .frame(width: 100)
-                if error[2] {
-//                    Text("Please enter a positive number")
-//                        .foregroundColor(Color.red)
-                }
             }
             HStack {
                 Text("Start at login:")
