@@ -12,6 +12,7 @@ var clipBoardHandler = ClipBoardHandler(configHandler: configHandler)
 
 //TODO: menuextra
 //TODO: autostart
+// May not be possible due to menu limitations
 //TODO: rightclick to delete
 //TODO: Tooltips
 @main

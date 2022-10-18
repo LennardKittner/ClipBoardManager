@@ -54,7 +54,7 @@ class ClipBoardHandler :ObservableObject {
     
     func read() -> CBElement {
         accessLock.lock()
-        if !hasChanged() {
+        if !updateChangeCount() {
             accessLock.unlock()
             return history.first ?? CBElement(string: "", isFile: false, content: [:])
         }
@@ -70,16 +70,16 @@ class ClipBoardHandler :ObservableObject {
         }
         let isFile = content[NSPasteboard.PasteboardType.fileURL] != nil || content[NSPasteboard.PasteboardType.tiff] != nil
         let string = clipBoard.string(forType: NSPasteboard.PasteboardType.string)
-        // is compression necessary?
         if content[NSPasteboard.PasteboardType.fileURL] != nil && content[NSPasteboard.PasteboardType("com.apple.icns")] == nil {
             var i = 0
             // wait for the icon to be available but atmost 1s
-            while clipBoard.data(forType: NSPasteboard.PasteboardType("com.apple.icns")) == nil && i < 200 {
+            while clipBoard.data(forType: NSPasteboard.PasteboardType("com.apple.icns")) == nil && i < 200 && !haasChanged() {
                 usleep(5000) // wait 0.005s
                 i += 1
             }
         }
         content[NSPasteboard.PasteboardType("com.apple.icns")] = clipBoard.data(forType: NSPasteboard.PasteboardType("com.apple.icns"))
+        // is compression necessary?
         if content[NSPasteboard.PasteboardType("com.apple.icns")] != nil {
 //            var image = Data()
 //            if let data = content[NSPasteboard.PasteboardType("com.apple.icns")] {
@@ -122,8 +122,12 @@ class ClipBoardHandler :ObservableObject {
         history.removeAll()
     }
     
-    func hasChanged() -> Bool {
-        if oldChangeCount != clipBoard.changeCount {
+    func haasChanged() -> Bool {
+        return oldChangeCount != clipBoard.changeCount
+    }
+    
+    func updateChangeCount() -> Bool {
+        if haasChanged() {
             oldChangeCount = clipBoard.changeCount
             return true
         }
