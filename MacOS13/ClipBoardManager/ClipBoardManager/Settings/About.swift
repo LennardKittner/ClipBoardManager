@@ -18,9 +18,9 @@ struct About: View {
                 .padding(.bottom, 10)
             Spacer()
                 .frame(height: 10)
-            Text("Version \(version ?? "1.0")")
+            Text("Version: \(version ?? "1.0")")
                 .font(.subheadline)
-            Text("Creator Lennard Kittner")
+            Text("Author: Lennard Kittner")
                 .font(.subheadline)
             Button(action: {
                 let url = URL(string: "https://github.com/Lennard599")!

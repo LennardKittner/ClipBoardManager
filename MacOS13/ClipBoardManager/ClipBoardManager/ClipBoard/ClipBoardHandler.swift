@@ -14,7 +14,7 @@ class ClipBoardHandler :ObservableObject {
     private let clipBoard = NSPasteboard.general
     private let configHandler :ConfigHandler
     private var excludedTypes = ["com.apple.finder.noderef"]
-    private var extraTypes = [NSPasteboard.PasteboardType("com.apple.icns")]
+    private var extraTypes = [NSPasteboard.PasteboardType("com.apple.icns"), NSPasteboard.PasteboardType("org.nspasteboard.source")]
     private var oldChangeCount :Int!
     private var accessLock :NSLock
     @Published var history :[CBElement]!
@@ -68,6 +68,9 @@ class ClipBoardHandler :ObservableObject {
                 }
             }
         }
+        if content[NSPasteboard.PasteboardType("org.nspasteboard.source")] == nil {
+            content[NSPasteboard.PasteboardType("org.nspasteboard.source")] = Data(NSWorkspace.shared.frontmostApplication?.bundleIdentifier?.utf8 ?? "".utf8)
+        }
         let isFile = content[NSPasteboard.PasteboardType.fileURL] != nil || content[NSPasteboard.PasteboardType.tiff] != nil
         let string = clipBoard.string(forType: NSPasteboard.PasteboardType.string)
         if content[NSPasteboard.PasteboardType.fileURL] != nil && content[NSPasteboard.PasteboardType("com.apple.icns")] == nil {
@@ -81,18 +84,6 @@ class ClipBoardHandler :ObservableObject {
         content[NSPasteboard.PasteboardType("com.apple.icns")] = clipBoard.data(forType: NSPasteboard.PasteboardType("com.apple.icns"))
         // is compression necessary?
         if content[NSPasteboard.PasteboardType("com.apple.icns")] != nil {
-//            var image = Data()
-//            if let data = content[NSPasteboard.PasteboardType("com.apple.icns")] {
-//                if let image1 = NSImage(data: data) {
-//                    if let image2 = image1.resizeImage(tamanho: NSSize(width: 15, height: 15)).tiffRepresentation {
-//                        if let image3 = NSBitmapImageRep(data: image2) {
-//                            if let image4 = image3.representation(using: .png, properties: [:]) {
-//                                image = image4
-//                            }
-//                        }
-//                    }
-//                }
-//            }
             let image = NSBitmapImageRep(data: NSImage(data: content[NSPasteboard.PasteboardType("com.apple.icns")] ?? Data())?.resizeImage(tamanho: NSSize(width: 15, height: 15)).tiffRepresentation ?? Data())?.representation(using: .png, properties: [:])
             content[NSPasteboard.PasteboardType("com.apple.icns")] = image
         }
@@ -180,5 +171,6 @@ class ClipBoardHandler :ObservableObject {
         print(logPB("color", NSPasteboard.PasteboardType.color))
         print(logPB("font", NSPasteboard.PasteboardType.font))
         print(logPB("com.apple.icns", NSPasteboard.PasteboardType("com.apple.icns")))
+        print(logPB("source", NSPasteboard.PasteboardType("org.nspasteboard.source")))
     }
 }

@@ -7,6 +7,14 @@
 
 import Foundation
 
+
+func ==(op1: ConfigData, op2: ConfigData) -> Bool {
+    return op1.atLogin == op2.atLogin
+        && op1.previewLength == op2.previewLength
+        && op1.clippings == op2.clippings
+        && (abs(op1.refreshIntervall-op2.refreshIntervall) < Float.ulpOfOne * abs(op1.refreshIntervall+op2.refreshIntervall))
+}
+
 final class ConfigData: Decodable, Encodable {
     var clippings :Int
     var refreshIntervall :Float

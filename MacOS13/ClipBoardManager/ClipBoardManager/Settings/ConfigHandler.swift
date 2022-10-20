@@ -27,24 +27,12 @@ class ConfigHandler :ObservableObject {
             if conf == self.oldConf {
                 return
             }
-            self.applySettings(conf: conf)
             writeCfg(conf, to: ConfigHandler.CONF_FILE)
             self.oldConf = ConfigData(copy: conf)
         })
-        applySettings(conf: conf)
-    }
-    
-    private func applySettings(conf: ConfigData) {
-        
     }
 }
 
-func ==(op1: ConfigData, op2: ConfigData) -> Bool {
-    return op1.atLogin == op2.atLogin
-        && op1.previewLength == op2.previewLength
-        && op1.clippings == op2.clippings
-        && (abs(op1.refreshIntervall-op2.refreshIntervall) < Float.ulpOfOne * abs(op1.refreshIntervall+op2.refreshIntervall))
-}
     
 func readCfg(from file: URL) -> ConfigData? {
     if let data = try? Data(contentsOf: file) {

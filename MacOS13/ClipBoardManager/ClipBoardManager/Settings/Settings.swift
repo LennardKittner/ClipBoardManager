@@ -13,12 +13,6 @@ struct Settings: View {
     @EnvironmentObject private var configHandler :ConfigHandler
     @State private var error = [false, false, false]
     
-    let floatFormater :NumberFormatter = {
-        let formater = NumberFormatter()
-        formater.numberStyle = .decimal
-        return formater
-    }()
-    
     func validatePositiveInt(_ string: String) -> Int? {
         if let num = Int(string) {
             if num > 0 {

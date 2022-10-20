@@ -21,6 +21,7 @@
 		DB14E49C28F8526700D6770B /* ClipBoardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB14E49A28F8526700D6770B /* ClipBoardHandler.swift */; };
 		DB638FEF28FCA1F800E4298C /* ValidatedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB638FEE28FCA1F800E4298C /* ValidatedTextField.swift */; };
 		DB638FF128FCB32600E4298C /* Toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB638FF028FCB32600E4298C /* Toolbar.swift */; };
+		DBB05FF129017FB800162C01 /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB05FF029017FB800162C01 /* MainMenu.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		DB14E49A28F8526700D6770B /* ClipBoardHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClipBoardHandler.swift; path = ClipBoardManager/ClipBoard/ClipBoardHandler.swift; sourceTree = SOURCE_ROOT; };
 		DB638FEE28FCA1F800E4298C /* ValidatedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatedTextField.swift; sourceTree = "<group>"; };
 		DB638FF028FCB32600E4298C /* Toolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toolbar.swift; sourceTree = "<group>"; };
+		DBB05FF029017FB800162C01 /* MainMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 				DB14E48528F73F7200D6770B /* Settings */,
 				DB14E47628F73F5200D6770B /* ClipBoardManagerApp.swift */,
 				DB14E49228F741AF00D6770B /* ClipMenuItem.swift */,
+				DBB05FF029017FB800162C01 /* MainMenu.swift */,
 				DB14E49728F7641E00D6770B /* Utility.swift */,
 				DB14E49D28F8527C00D6770B /* ClipBoard */,
 				DB14E47A28F73F5400D6770B /* Assets.xcassets */,
@@ -187,6 +190,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBB05FF129017FB800162C01 /* MainMenu.swift in Sources */,
 				DB14E48F28F7401300D6770B /* TabView.swift in Sources */,
 				DB14E49C28F8526700D6770B /* ClipBoardHandler.swift in Sources */,
 				DB14E48E28F7401300D6770B /* ConfigHandler.swift in Sources */,
@@ -328,6 +332,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ClipBoardManager/Info.plist;
+				INFOPLIST_KEY_LSUIElement = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -341,15 +346,16 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Lennard.ClipBoardManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = macosx;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -367,6 +373,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ClipBoardManager/Info.plist;
+				INFOPLIST_KEY_LSUIElement = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -380,15 +387,16 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Lennard.ClipBoardManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = macosx;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
