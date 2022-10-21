@@ -35,15 +35,15 @@ class ClipBoardHandler :ObservableObject {
             let JSON = self.getHistoryAsJSON()
             try? JSON.write(toFile: self.clippingsPath.path, atomically: true, encoding: String.Encoding.utf8)
         }
-        configSink = configHandler.$submit.sink(receiveValue: { _ in
-            self.historyCapacity = self.configHandler.conf.clippings
+        configSink = configHandler.$conf.sink(receiveValue: { newConf in
+            self.historyCapacity = newConf.clippings
             if self.history.count > self.historyCapacity {
                 self.history.removeLast(self.history.count - self.historyCapacity)
             }
             
-            if self.timer?.timeInterval ?? -1 != TimeInterval(self.configHandler.conf.refreshIntervall) && self.configHandler.conf.refreshIntervall > 0 {
+            if self.timer?.timeInterval ?? -1 != TimeInterval(newConf.refreshIntervall) && newConf.refreshIntervall > 0 {
                 self.timer?.invalidate()
-                self.timer = Timer.scheduledTimer(timeInterval: TimeInterval(self.configHandler.conf.refreshIntervall), target: self, selector: #selector(self.refreshClipBoard(_:)), userInfo: nil, repeats: true)
+                self.timer = Timer.scheduledTimer(timeInterval: TimeInterval(newConf.refreshIntervall), target: self, selector: #selector(self.refreshClipBoard(_:)), userInfo: nil, repeats: true)
             }
         })
     }

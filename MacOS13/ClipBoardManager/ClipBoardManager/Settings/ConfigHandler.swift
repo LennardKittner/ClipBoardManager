@@ -15,12 +15,10 @@ class ConfigHandler :ObservableObject {
     // ~/Library/Containers/com.Lennard.SettingsSwitfUI/Data/Library/"Application Support"/ClipBoardManager
     static let CONF_FILE = URL(fileURLWithPath: "\(FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0].path)/ClipBoardManager/ClipBoardManager.json")
     @Published var conf :ConfigData
-    @Published var submit :Bool
     private var oldConf :ConfigData! // necessary because removeDuplicates(by: ) does not work
     private var configSink :Cancellable!
     
     init() {
-        submit = true
         conf = readCfg(from: ConfigHandler.CONF_FILE) ?? ConfigData()
         oldConf = ConfigData(copy: conf)
         configSink = $conf.sink(receiveValue: { conf in

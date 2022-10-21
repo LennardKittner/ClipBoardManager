@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-var configHandler = ConfigHandler()
-var clipBoardHandler = ClipBoardHandler(configHandler: configHandler)
 
 //TODO: autostart
 // May not be possible due to menu limitations
@@ -17,15 +15,21 @@ var clipBoardHandler = ClipBoardHandler(configHandler: configHandler)
 @available(macOS 13.0, *)
 @main
 struct ClipBoardManagerApp: App {
-    @StateObject private var _configHandler = configHandler
-    @StateObject private var _clipBoardHandler = clipBoardHandler
+    @StateObject private var configHandler :ConfigHandler
+    @StateObject private var clipBoardHandler :ClipBoardHandler
     @State private var curretnTab = 0
+    
+    init() {
+        let confH = ConfigHandler()
+        self._configHandler = StateObject(wrappedValue: confH)
+        self._clipBoardHandler = StateObject(wrappedValue: ClipBoardHandler(configHandler: confH))
+    }
     
     var body: some Scene {
         MenuBarExtra(content: {
             MainMenu()
-                .environmentObject(_clipBoardHandler)
-                .environmentObject(_configHandler)
+                .environmentObject(configHandler)
+                .environmentObject(clipBoardHandler)
         }) {
             Image(systemName: "paperclip")
         }

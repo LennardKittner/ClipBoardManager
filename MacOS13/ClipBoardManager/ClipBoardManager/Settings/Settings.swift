@@ -39,20 +39,20 @@ struct Settings: View {
             }
             HStack {
                 Text("Number Clippings: ")
-                ValidatedTextField(content: $configHandler.conf.clippings, error: $error[0], validate: validatePositiveInt(_:), onFocusLost: {configHandler.submit.toggle()})
+                ValidatedTextField(content: $configHandler.conf.clippings, error: $error[0], validate: validatePositiveInt(_:))
                     .frame(width: 100)
             }
             HStack {
                 Text("Refresh intervall:")
                     .padding(.trailing, 14)
-                ValidatedTextField(content: $configHandler.conf.refreshIntervall, error: $error[1], validate: validatePositiveFloat(_:), onFocusLost: {configHandler.submit.toggle()})
+                ValidatedTextField(content: $configHandler.conf.refreshIntervall, error: $error[1], validate: validatePositiveFloat(_:))
                     .frame(width: 100)
                 Text("seconds")
             }
             HStack {
                 Text("Preview length:")
                     .padding(.trailing, 22.5)
-                ValidatedTextField(content: $configHandler.conf.previewLength, error: $error[2], validate: validatePositiveInt(_:), onFocusLost: {configHandler.submit.toggle()})
+                ValidatedTextField(content: $configHandler.conf.previewLength, error: $error[2], validate: validatePositiveInt(_:))
                     .frame(width: 100)
             }
             HStack {
@@ -63,8 +63,6 @@ struct Settings: View {
                 }
                 .toggleStyle(CheckboxToggleStyle())
             }
-        }.onDisappear {
-            configHandler.submit.toggle()
         }
         .padding(.leading, -95.0)
     }
