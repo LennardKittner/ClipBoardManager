@@ -8,7 +8,6 @@
 import SwiftUI
 
 
-//TODO: autostart
 // May not be possible due to menu limitations
 //TODO: rightclick to delete
 //TODO: Tooltips

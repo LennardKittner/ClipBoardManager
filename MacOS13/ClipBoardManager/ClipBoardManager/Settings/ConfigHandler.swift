@@ -8,7 +8,7 @@
 
 import Foundation
 import Combine
-
+import ServiceManagement
 
 class ConfigHandler :ObservableObject {
     
@@ -27,6 +27,11 @@ class ConfigHandler :ObservableObject {
             }
             writeCfg(conf, to: ConfigHandler.CONF_FILE)
             self.oldConf = ConfigData(copy: conf)
+            if conf.atLogin {
+                try? SMAppService.mainApp.register()
+            } else {
+                try? SMAppService.mainApp.unregister()
+            }
         })
     }
 }
