@@ -8,7 +8,19 @@
 import SwiftUI
 
 extension View {
-    func openNewWindowWithToolbar(title: String, rect: NSRect, style: NSWindow.StyleMask, toolbar: some View) -> NSWindow {
+    
+    private func findWindowWithTag(identifier: String) -> NSWindow? {
+        return NSApplication.shared.windows.filter({ $0.identifier?.rawValue == identifier }).first
+    }
+        
+    func openNewWindowWithToolbar(title: String, rect: NSRect, style: NSWindow.StyleMask,identifier :String = "", toolbar: some View) -> NSWindow {
+        if !identifier.isEmpty {
+            if let window = findWindowWithTag(identifier: identifier) {
+                window.orderFrontRegardless()
+                return window
+            }
+        }
+        
         let titlebarAccessoryView = toolbar.padding(.top, -5).padding(.leading, -8)
         
         let accessoryHostingView = NSHostingView(rootView: titlebarAccessoryView)
@@ -25,6 +37,7 @@ extension View {
         window.center()
         window.title = title
         window.isReleasedWhenClosed = false
+        window.identifier = NSUserInterfaceItemIdentifier(identifier)
         
         window.addTitlebarAccessoryViewController(titlebarAccessory)
         window.toolbarStyle = .preference

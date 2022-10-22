@@ -24,7 +24,7 @@ struct MainMenu: View {
         Button("Preferences") {
             TabView(currentTab: $curretnTab)
                 .environmentObject(configHandler)
-                .openNewWindowWithToolbar(title: "ClipBoardManager", rect: NSRect(x: 0, y: 0, width: 450, height: 150), style: [.closable, .titled], toolbar: Toolbar(tabs: ["About", "Settings"], currentTab: $curretnTab))
+                .openNewWindowWithToolbar(title: "ClipBoardManager", rect: NSRect(x: 0, y: 0, width: 450, height: 150), style: [.closable, .titled],identifier: "Settings", toolbar: Toolbar(tabs: ["About", "Settings"], currentTab: $curretnTab))
         }.keyboardShortcut(",")
         Divider()
         Button("Quit") {
