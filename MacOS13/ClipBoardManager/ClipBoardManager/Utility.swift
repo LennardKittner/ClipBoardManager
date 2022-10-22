@@ -44,6 +44,8 @@ extension View {
 
         window.contentView = NSHostingView(rootView: self)
         window.makeKeyAndOrderFront(nil)
+        window.orderFrontRegardless()
+
         return window
     }
 }

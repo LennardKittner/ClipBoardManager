@@ -62,6 +62,9 @@ struct Settings: View {
                     
                 }
                 .toggleStyle(CheckboxToggleStyle())
+                .onChange(of: configHandler.conf.atLogin, perform: {b in
+                    configHandler.applyAtLognin()
+                })
             }
         }
         .padding(.leading, -95.0)

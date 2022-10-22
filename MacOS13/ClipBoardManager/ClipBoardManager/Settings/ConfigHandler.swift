@@ -19,37 +19,43 @@ class ConfigHandler :ObservableObject {
     private var configSink :Cancellable!
     
     init() {
-        conf = readCfg(from: ConfigHandler.CONF_FILE) ?? ConfigData()
+        conf = ConfigHandler.readCfg(from: ConfigHandler.CONF_FILE) ?? ConfigData()
+        updateAtLogin()
         oldConf = ConfigData(copy: conf)
         configSink = $conf.sink(receiveValue: { conf in
             if conf == self.oldConf {
                 return
             }
-            writeCfg(conf, to: ConfigHandler.CONF_FILE)
+            ConfigHandler.writeCfg(conf, to: ConfigHandler.CONF_FILE)
             self.oldConf = ConfigData(copy: conf)
-            if conf.atLogin {
-                try? SMAppService.mainApp.register()
-            } else {
-                try? SMAppService.mainApp.unregister()
-            }
         })
     }
-}
-
     
-func readCfg(from file: URL) -> ConfigData? {
-    if let data = try? Data(contentsOf: file) {
-        let decoder = JSONDecoder()
-        return try? decoder.decode(ConfigData.self, from: data)
+    private func updateAtLogin() {
+        conf.atLogin = SMAppService.mainApp.status.rawValue == 1 ? true : false
     }
-    return nil
-}
+    
+    func applyAtLognin() {
+        if conf.atLogin {
+            try? SMAppService.mainApp.register()
+        } else {
+            try? SMAppService.mainApp.unregister()
+        }
+    }
+        
+    static func readCfg(from file: URL) -> ConfigData? {
+        if let data = try? Data(contentsOf: file) {
+            let decoder = JSONDecoder()
+            return try? decoder.decode(ConfigData.self, from: data)
+        }
+        return nil
+    }
 
-func writeCfg(_ conf: ConfigData, to file: URL) {
-    if let jsonData = try? JSONEncoder().encode(conf) {
-        try? FileManager.default.createDirectory(atPath: file.deletingLastPathComponent().path, withIntermediateDirectories: true)
-        FileManager.default.createFile(atPath: file.path, contents: nil, attributes: nil)
-        try? jsonData.write(to: file)
+    static func writeCfg(_ conf: ConfigData, to file: URL) {
+        if let jsonData = try? JSONEncoder().encode(conf) {
+            try? FileManager.default.createDirectory(atPath: file.deletingLastPathComponent().path, withIntermediateDirectories: true)
+            FileManager.default.createFile(atPath: file.path, contents: nil, attributes: nil)
+            try? jsonData.write(to: file)
+        }
     }
 }
-
