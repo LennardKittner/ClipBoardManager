@@ -3,48 +3,49 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		490D503421235BFA00DA6CA3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490D503321235BFA00DA6CA3 /* AppDelegate.swift */; };
-		490D503821235BFD00DA6CA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 490D503721235BFD00DA6CA3 /* Assets.xcassets */; };
-		490D503B21235BFD00DA6CA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 490D503921235BFD00DA6CA3 /* Main.storyboard */; };
-		490D50552127853E00DA6CA3 /* PreferencefViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490D50542127853E00DA6CA3 /* PreferencefViewController.swift */; };
-		490D50572127880B00DA6CA3 /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490D50562127880B00DA6CA3 /* PreferencesWindowController.swift */; };
-		492059D62129BE4600FDCC76 /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 492059D52129BE4600FDCC76 /* Preferences.storyboard */; };
-		DB8CCA6028ABD69A008CB746 /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CCA5F28ABD69A008CB746 /* MainMenu.swift */; };
-		DB8CCA6228ABD6B0008CB746 /* OnOpenMenuDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CCA6128ABD6B0008CB746 /* OnOpenMenuDelegate.swift */; };
-		DB8CCA6628ABDA3B008CB746 /* ConfigData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CCA6328ABDA3B008CB746 /* ConfigData.swift */; };
-		DB8CCA6728ABDA3B008CB746 /* ConfigHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CCA6428ABDA3B008CB746 /* ConfigHandler.swift */; };
-		DB8CCA6828ABDA3B008CB746 /* ConfigParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CCA6528ABDA3B008CB746 /* ConfigParser.swift */; };
-		DB8CCA6A28AC0C76008CB746 /* ClipItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CCA6928AC0C76008CB746 /* ClipItem.swift */; };
-		DB8CCA6C28AFFB08008CB746 /* ClipBoardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CCA6B28AFFB08008CB746 /* ClipBoardHandler.swift */; };
-		DB8CCA6E28B2441B008CB746 /* CBElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8CCA6D28B2441B008CB746 /* CBElement.swift */; };
+		DB14E47728F73F5200D6770B /* ClipBoardManagerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB14E47628F73F5200D6770B /* ClipBoardManagerApp.swift */; };
+		DB14E47B28F73F5400D6770B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB14E47A28F73F5400D6770B /* Assets.xcassets */; };
+		DB14E47F28F73F5400D6770B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB14E47E28F73F5400D6770B /* Preview Assets.xcassets */; };
+		DB14E48B28F7401300D6770B /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB14E48628F7401300D6770B /* Settings.swift */; };
+		DB14E48C28F7401300D6770B /* ConfigData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB14E48728F7401300D6770B /* ConfigData.swift */; };
+		DB14E48D28F7401300D6770B /* About.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB14E48828F7401300D6770B /* About.swift */; };
+		DB14E48E28F7401300D6770B /* ConfigHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB14E48928F7401300D6770B /* ConfigHandler.swift */; };
+		DB14E48F28F7401300D6770B /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB14E48A28F7401300D6770B /* TabView.swift */; };
+		DB14E49328F741B000D6770B /* ClipMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB14E49228F741AF00D6770B /* ClipMenuItem.swift */; };
+		DB14E49828F7641E00D6770B /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB14E49728F7641E00D6770B /* Utility.swift */; };
+		DB14E49B28F8526700D6770B /* CBElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB14E49928F8526700D6770B /* CBElement.swift */; };
+		DB14E49C28F8526700D6770B /* ClipBoardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB14E49A28F8526700D6770B /* ClipBoardHandler.swift */; };
+		DB638FEF28FCA1F800E4298C /* ValidatedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB638FEE28FCA1F800E4298C /* ValidatedTextField.swift */; };
+		DB638FF128FCB32600E4298C /* Toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB638FF028FCB32600E4298C /* Toolbar.swift */; };
+		DBB05FF129017FB800162C01 /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB05FF029017FB800162C01 /* MainMenu.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		490D503021235BFA00DA6CA3 /* ClipBoardManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClipBoardManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		490D503321235BFA00DA6CA3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		490D503721235BFD00DA6CA3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		490D503A21235BFD00DA6CA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		490D503C21235BFD00DA6CA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		490D503D21235BFD00DA6CA3 /* ClipBoardManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ClipBoardManager.entitlements; sourceTree = "<group>"; };
-		490D50542127853E00DA6CA3 /* PreferencefViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencefViewController.swift; sourceTree = "<group>"; };
-		490D50562127880B00DA6CA3 /* PreferencesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
-		492059D52129BE4600FDCC76 /* Preferences.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Preferences.storyboard; sourceTree = "<group>"; };
-		DB8CCA5F28ABD69A008CB746 /* MainMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
-		DB8CCA6128ABD6B0008CB746 /* OnOpenMenuDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnOpenMenuDelegate.swift; sourceTree = "<group>"; };
-		DB8CCA6328ABDA3B008CB746 /* ConfigData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigData.swift; sourceTree = "<group>"; };
-		DB8CCA6428ABDA3B008CB746 /* ConfigHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigHandler.swift; sourceTree = "<group>"; };
-		DB8CCA6528ABDA3B008CB746 /* ConfigParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigParser.swift; sourceTree = "<group>"; };
-		DB8CCA6928AC0C76008CB746 /* ClipItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipItem.swift; sourceTree = "<group>"; };
-		DB8CCA6B28AFFB08008CB746 /* ClipBoardHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipBoardHandler.swift; sourceTree = "<group>"; };
-		DB8CCA6D28B2441B008CB746 /* CBElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBElement.swift; sourceTree = "<group>"; };
+		DB14E47328F73F5200D6770B /* ClipBoardManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClipBoardManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB14E47628F73F5200D6770B /* ClipBoardManagerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipBoardManagerApp.swift; sourceTree = "<group>"; };
+		DB14E47A28F73F5400D6770B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DB14E47C28F73F5400D6770B /* ClipBoardManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ClipBoardManager.entitlements; sourceTree = "<group>"; };
+		DB14E47E28F73F5400D6770B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		DB14E48628F7401300D6770B /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		DB14E48728F7401300D6770B /* ConfigData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigData.swift; sourceTree = "<group>"; };
+		DB14E48828F7401300D6770B /* About.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = About.swift; sourceTree = "<group>"; };
+		DB14E48928F7401300D6770B /* ConfigHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigHandler.swift; sourceTree = "<group>"; };
+		DB14E48A28F7401300D6770B /* TabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
+		DB14E49228F741AF00D6770B /* ClipMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipMenuItem.swift; sourceTree = "<group>"; };
+		DB14E49728F7641E00D6770B /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		DB14E49928F8526700D6770B /* CBElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBElement.swift; path = ClipBoardManager/ClipBoard/CBElement.swift; sourceTree = SOURCE_ROOT; };
+		DB14E49A28F8526700D6770B /* ClipBoardHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClipBoardHandler.swift; path = ClipBoardManager/ClipBoard/ClipBoardHandler.swift; sourceTree = SOURCE_ROOT; };
+		DB638FEE28FCA1F800E4298C /* ValidatedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatedTextField.swift; sourceTree = "<group>"; };
+		DB638FF028FCB32600E4298C /* Toolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toolbar.swift; sourceTree = "<group>"; };
+		DBB05FF029017FB800162C01 /* MainMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		490D502D21235BFA00DA6CA3 /* Frameworks */ = {
+		DB14E47028F73F5200D6770B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -54,63 +55,79 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		490D502721235BFA00DA6CA3 = {
+		DB14E46A28F73F5200D6770B = {
 			isa = PBXGroup;
 			children = (
-				490D505121276D7D00DA6CA3 /* PreferencesWindow */,
-				490D503221235BFA00DA6CA3 /* ClipBoardManager */,
-				490D503121235BFA00DA6CA3 /* Products */,
+				DB14E47528F73F5200D6770B /* ClipBoardManager */,
+				DB14E47428F73F5200D6770B /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		490D503121235BFA00DA6CA3 /* Products */ = {
+		DB14E47428F73F5200D6770B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				490D503021235BFA00DA6CA3 /* ClipBoardManager.app */,
+				DB14E47328F73F5200D6770B /* ClipBoardManager.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		490D503221235BFA00DA6CA3 /* ClipBoardManager */ = {
+		DB14E47528F73F5200D6770B /* ClipBoardManager */ = {
 			isa = PBXGroup;
 			children = (
-				DB8CCA6928AC0C76008CB746 /* ClipItem.swift */,
-				DB8CCA6328ABDA3B008CB746 /* ConfigData.swift */,
-				DB8CCA6428ABDA3B008CB746 /* ConfigHandler.swift */,
-				DB8CCA6528ABDA3B008CB746 /* ConfigParser.swift */,
-				DB8CCA5F28ABD69A008CB746 /* MainMenu.swift */,
-				490D503321235BFA00DA6CA3 /* AppDelegate.swift */,
-				490D503721235BFD00DA6CA3 /* Assets.xcassets */,
-				490D503921235BFD00DA6CA3 /* Main.storyboard */,
-				490D503C21235BFD00DA6CA3 /* Info.plist */,
-				490D503D21235BFD00DA6CA3 /* ClipBoardManager.entitlements */,
-				DB8CCA6128ABD6B0008CB746 /* OnOpenMenuDelegate.swift */,
-				DB8CCA6B28AFFB08008CB746 /* ClipBoardHandler.swift */,
-				DB8CCA6D28B2441B008CB746 /* CBElement.swift */,
+				DB14E48528F73F7200D6770B /* Settings */,
+				DB14E47628F73F5200D6770B /* ClipBoardManagerApp.swift */,
+				DBB05FF029017FB800162C01 /* MainMenu.swift */,
+				DB14E49728F7641E00D6770B /* Utility.swift */,
+				DB14E49D28F8527C00D6770B /* ClipBoard */,
+				DB14E47A28F73F5400D6770B /* Assets.xcassets */,
+				DB14E47C28F73F5400D6770B /* ClipBoardManager.entitlements */,
+				DB14E47D28F73F5400D6770B /* Preview Content */,
 			);
 			path = ClipBoardManager;
 			sourceTree = "<group>";
 		};
-		490D505121276D7D00DA6CA3 /* PreferencesWindow */ = {
+		DB14E47D28F73F5400D6770B /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				490D50542127853E00DA6CA3 /* PreferencefViewController.swift */,
-				490D50562127880B00DA6CA3 /* PreferencesWindowController.swift */,
-				492059D52129BE4600FDCC76 /* Preferences.storyboard */,
+				DB14E47E28F73F5400D6770B /* Preview Assets.xcassets */,
 			);
-			path = PreferencesWindow;
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		DB14E48528F73F7200D6770B /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				DB14E48828F7401300D6770B /* About.swift */,
+				DB14E48728F7401300D6770B /* ConfigData.swift */,
+				DB14E48928F7401300D6770B /* ConfigHandler.swift */,
+				DB14E48628F7401300D6770B /* Settings.swift */,
+				DB14E48A28F7401300D6770B /* TabView.swift */,
+				DB638FEE28FCA1F800E4298C /* ValidatedTextField.swift */,
+				DB638FF028FCB32600E4298C /* Toolbar.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		DB14E49D28F8527C00D6770B /* ClipBoard */ = {
+			isa = PBXGroup;
+			children = (
+				DB14E49228F741AF00D6770B /* ClipMenuItem.swift */,
+				DB14E49A28F8526700D6770B /* ClipBoardHandler.swift */,
+				DB14E49928F8526700D6770B /* CBElement.swift */,
+			);
+			path = ClipBoard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		490D502F21235BFA00DA6CA3 /* ClipBoardManager */ = {
+		DB14E47228F73F5200D6770B /* ClipBoardManager */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 490D504B21235BFD00DA6CA3 /* Build configuration list for PBXNativeTarget "ClipBoardManager" */;
+			buildConfigurationList = DB14E48228F73F5400D6770B /* Build configuration list for PBXNativeTarget "ClipBoardManager" */;
 			buildPhases = (
-				490D502C21235BFA00DA6CA3 /* Sources */,
-				490D502D21235BFA00DA6CA3 /* Frameworks */,
-				490D502E21235BFA00DA6CA3 /* Resources */,
+				DB14E46F28F73F5200D6770B /* Sources */,
+				DB14E47028F73F5200D6770B /* Frameworks */,
+				DB14E47128F73F5200D6770B /* Resources */,
 			);
 			buildRules = (
 			);
@@ -118,102 +135,85 @@
 			);
 			name = ClipBoardManager;
 			productName = ClipBoardManager;
-			productReference = 490D503021235BFA00DA6CA3 /* ClipBoardManager.app */;
+			productReference = DB14E47328F73F5200D6770B /* ClipBoardManager.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		490D502821235BFA00DA6CA3 /* Project object */ = {
+		DB14E46B28F73F5200D6770B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0940;
-				LastUpgradeCheck = 1340;
-				ORGANIZATIONNAME = "Lennard Kittner";
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1400;
+				LastUpgradeCheck = 1400;
 				TargetAttributes = {
-					490D502F21235BFA00DA6CA3 = {
-						CreatedOnToolsVersion = 9.4.1;
-						LastSwiftMigration = 1340;
-						SystemCapabilities = {
-							com.apple.Keychain = {
-								enabled = 0;
-							};
-						};
+					DB14E47228F73F5200D6770B = {
+						CreatedOnToolsVersion = 14.0.1;
 					};
 				};
 			};
-			buildConfigurationList = 490D502B21235BFA00DA6CA3 /* Build configuration list for PBXProject "ClipBoardManager" */;
-			compatibilityVersion = "Xcode 9.3";
+			buildConfigurationList = DB14E46E28F73F5200D6770B /* Build configuration list for PBXProject "ClipBoardManager" */;
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 490D502721235BFA00DA6CA3;
-			productRefGroup = 490D503121235BFA00DA6CA3 /* Products */;
+			mainGroup = DB14E46A28F73F5200D6770B;
+			productRefGroup = DB14E47428F73F5200D6770B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				490D502F21235BFA00DA6CA3 /* ClipBoardManager */,
+				DB14E47228F73F5200D6770B /* ClipBoardManager */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		490D502E21235BFA00DA6CA3 /* Resources */ = {
+		DB14E47128F73F5200D6770B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				492059D62129BE4600FDCC76 /* Preferences.storyboard in Resources */,
-				490D503821235BFD00DA6CA3 /* Assets.xcassets in Resources */,
-				490D503B21235BFD00DA6CA3 /* Main.storyboard in Resources */,
+				DB14E47F28F73F5400D6770B /* Preview Assets.xcassets in Resources */,
+				DB14E47B28F73F5400D6770B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		490D502C21235BFA00DA6CA3 /* Sources */ = {
+		DB14E46F28F73F5200D6770B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				490D50552127853E00DA6CA3 /* PreferencefViewController.swift in Sources */,
-				DB8CCA6C28AFFB08008CB746 /* ClipBoardHandler.swift in Sources */,
-				DB8CCA6228ABD6B0008CB746 /* OnOpenMenuDelegate.swift in Sources */,
-				DB8CCA6028ABD69A008CB746 /* MainMenu.swift in Sources */,
-				DB8CCA6628ABDA3B008CB746 /* ConfigData.swift in Sources */,
-				DB8CCA6A28AC0C76008CB746 /* ClipItem.swift in Sources */,
-				DB8CCA6828ABDA3B008CB746 /* ConfigParser.swift in Sources */,
-				DB8CCA6728ABDA3B008CB746 /* ConfigHandler.swift in Sources */,
-				490D50572127880B00DA6CA3 /* PreferencesWindowController.swift in Sources */,
-				490D503421235BFA00DA6CA3 /* AppDelegate.swift in Sources */,
-				DB8CCA6E28B2441B008CB746 /* CBElement.swift in Sources */,
+				DBB05FF129017FB800162C01 /* MainMenu.swift in Sources */,
+				DB14E48F28F7401300D6770B /* TabView.swift in Sources */,
+				DB14E49C28F8526700D6770B /* ClipBoardHandler.swift in Sources */,
+				DB14E48E28F7401300D6770B /* ConfigHandler.swift in Sources */,
+				DB638FF128FCB32600E4298C /* Toolbar.swift in Sources */,
+				DB14E49B28F8526700D6770B /* CBElement.swift in Sources */,
+				DB14E48C28F7401300D6770B /* ConfigData.swift in Sources */,
+				DB14E48D28F7401300D6770B /* About.swift in Sources */,
+				DB14E49828F7641E00D6770B /* Utility.swift in Sources */,
+				DB638FEF28FCA1F800E4298C /* ValidatedTextField.swift in Sources */,
+				DB14E49328F741B000D6770B /* ClipMenuItem.swift in Sources */,
+				DB14E48B28F7401300D6770B /* Settings.swift in Sources */,
+				DB14E47728F73F5200D6770B /* ClipBoardManagerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXVariantGroup section */
-		490D503921235BFD00DA6CA3 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				490D503A21235BFD00DA6CA3 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
-		490D504921235BFD00DA6CA3 /* Debug */ = {
+		DB14E48028F73F5400D6770B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -239,7 +239,6 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -258,23 +257,21 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MTL_ENABLE_DEBUG_INFO = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		490D504A21235BFD00DA6CA3 /* Release */ = {
+		DB14E48128F73F5400D6770B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -300,7 +297,6 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -313,60 +309,91 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = macosx;
+				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Release;
 		};
-		490D504C21235BFD00DA6CA3 /* Debug */ = {
+		DB14E48328F73F5400D6770B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ClipBoardManager/ClipBoardManager.entitlements;
-				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"ClipBoardManager/Preview Content\"";
 				DEVELOPMENT_TEAM = VLCLT2XQF5;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
-					"$(PROJECT_DIR)",
-				);
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ClipBoardManager/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
+				INFOPLIST_KEY_LSUIElement = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Lennard.ClipBoardManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = macosx;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
-		490D504D21235BFD00DA6CA3 /* Release */ = {
+		DB14E48428F73F5400D6770B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ClipBoardManager/ClipBoardManager.entitlements;
-				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"ClipBoardManager/Preview Content\"";
 				DEVELOPMENT_TEAM = VLCLT2XQF5;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
-					"$(PROJECT_DIR)",
-				);
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ClipBoardManager/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
+				INFOPLIST_KEY_LSUIElement = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Lennard.ClipBoardManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = macosx;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -374,25 +401,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		490D502B21235BFA00DA6CA3 /* Build configuration list for PBXProject "ClipBoardManager" */ = {
+		DB14E46E28F73F5200D6770B /* Build configuration list for PBXProject "ClipBoardManager" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				490D504921235BFD00DA6CA3 /* Debug */,
-				490D504A21235BFD00DA6CA3 /* Release */,
+				DB14E48028F73F5400D6770B /* Debug */,
+				DB14E48128F73F5400D6770B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		490D504B21235BFD00DA6CA3 /* Build configuration list for PBXNativeTarget "ClipBoardManager" */ = {
+		DB14E48228F73F5400D6770B /* Build configuration list for PBXNativeTarget "ClipBoardManager" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				490D504C21235BFD00DA6CA3 /* Debug */,
-				490D504D21235BFD00DA6CA3 /* Release */,
+				DB14E48328F73F5400D6770B /* Debug */,
+				DB14E48428F73F5400D6770B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 490D502821235BFA00DA6CA3 /* Project object */;
+	rootObject = DB14E46B28F73F5200D6770B /* Project object */;
 }

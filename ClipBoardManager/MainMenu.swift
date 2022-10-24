@@ -2,69 +2,42 @@
 //  MainMenu.swift
 //  ClipBoardManager
 //
-//  Created by Lennard on 16.08.22.
-//  Copyright © 2022 Lennard Kittner. All rights reserved.
+//  Created by Lennard on 20.10.22.
 //
 
-import Cocoa
+import SwiftUI
 
-class MainMenu: NSMenu {
+struct MainMenu: View {
+    @EnvironmentObject var clipBoardHandler: ClipBoardHandler
+    @EnvironmentObject var configHandler :ConfigHandler
+    @State private var curretnTab = 0
     
-    let clipBoardHandler :ClipBoardHandler
-    let clippingCount :Int
-    let width :Int
-    
-    init(clipBoardHandler :ClipBoardHandler, clippingCount :Int, width :Int) {
-        self.clipBoardHandler = clipBoardHandler
-        self.clippingCount = clippingCount
-        self.width = width
-        super.init(title: "mainMenu")
-        autoenablesItems = false
-        
-        let items = Array(count: clippingCount, elementCreator: ClipItem(clipBoardHandler: clipBoardHandler))
-        for i in 0..<items.count {
-            items[i].isHidden = true
-            addItem(items[i])
+    var body: some View {
+        ForEach(clipBoardHandler.history.indices, id: \.self) { id in
+            ClipMenuItem(clip: CBElement(string: clipBoardHandler.history[id].string, isFile: clipBoardHandler.history[id].isFile, content: clipBoardHandler.history[id].content), maxLength: configHandler.conf.previewLength)
         }
+        Divider()
+        Button("Clear") {
+            clipBoardHandler.clear()
+        }.keyboardShortcut("l")
+        Divider()
+        Button("Preferences") {
+            TabView(currentTab: $curretnTab)
+                .environmentObject(configHandler)
+                .openNewWindowWithToolbar(title: "ClipBoardManager", rect: NSRect(x: 0, y: 0, width: 450, height: 150), style: [.closable, .titled],identifier: "Settings", toolbar: Toolbar(tabs: ["About", "Settings"], currentTab: $curretnTab))
+        }.keyboardShortcut(",")
+        Divider()
+        Button("Quit") {
+            NSApplication.shared.terminate(nil)
+        }.keyboardShortcut("q")
+    }
+}
 
-        let placeholder = NSMenuItem(title: "Your clippings will apear here...", action: nil, keyEquivalent: "")
-        placeholder.isEnabled = false
-        addItem(placeholder)
-        
-        addItem(NSMenuItem.separator())
-        let clear = NSMenuItem(title: "Clear", action: #selector(MainMenu.clear(_:)), keyEquivalent: "l")
-        clear.target = self
-        addItem(clear)
-        addItem(NSMenuItem.separator())
-        addItem(NSMenuItem(title: "Preferences", action: #selector(AppDelegate.showPreferences(_:)), keyEquivalent: ","))
-        addItem(NSMenuItem.separator())
-        addItem(NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
-    }
-    
-    required init(coder: NSCoder) {
-        width = 40
-        clippingCount = 10
-        clipBoardHandler = ClipBoardHandler(historyCapacity: 10)
-        super.init(coder: coder)
-    }
-    
-    func refrsh(clipBoardHistory :[CBElement]) {
-        for i in 0..<min(clippingCount, clipBoardHistory.count) {
-            let entry = clipBoardHistory[i]
-            if let item = items[i] as? ClipItem {
-                item.update(entry: entry, maxLength: width)
-                item.isHidden = false
-            }
-        }
-        if (clipBoardHistory.count < clippingCount) {
-            for i in clipBoardHistory.count..<clippingCount {
-                items[i].isHidden = true
-            }
-        }
-        items[clippingCount].isHidden = !clipBoardHistory.isEmpty
-    }
-    
-    @objc func clear(_ sender :Any) {
-        clipBoardHandler.clear()
+
+struct MainMenu_Previews: PreviewProvider {
+    static var previews: some View {
+        MainMenu()
+            .environmentObject(ConfigHandler())
+            .environmentObject(ClipBoardHandler(configHandler: ConfigHandler()))
     }
 }
