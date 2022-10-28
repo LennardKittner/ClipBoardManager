@@ -59,7 +59,7 @@ struct ClipMenuItem: View {
     private func calcTitel(clip: CBElement, maxLength: Int) -> String {
         var menuTitel = clip.string
         menuTitel = menuTitel.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-        menuTitel = menuTitel.replacingOccurrences(of: "\n", with: "")
+        menuTitel = menuTitel.replacingOccurrences(of: "\n", with: " ")
         let suffix = menuTitel.count > maxLength ? "..." : ""
         menuTitel = menuTitel.padding(toLength: maxLength, withPad: " ", startingAt: 0)
         menuTitel.append(suffix)
