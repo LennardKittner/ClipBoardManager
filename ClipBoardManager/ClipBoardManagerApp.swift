@@ -22,6 +22,8 @@ struct ClipBoardManagerApp: App {
         let confH = ConfigHandler()
         self._configHandler = StateObject(wrappedValue: confH)
         self._clipBoardHandler = StateObject(wrappedValue: ClipBoardHandler(configHandler: confH))
+        let updater = Updater(user: "LennardKittner", repo: "ClipBoardManager", name: "ClipBoardManager.app")
+        updater.updateApp()
     }
     
     var body: some Scene {

@@ -19,6 +19,8 @@
 		DB14E49828F7641E00D6770B /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB14E49728F7641E00D6770B /* Utility.swift */; };
 		DB14E49B28F8526700D6770B /* CBElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB14E49928F8526700D6770B /* CBElement.swift */; };
 		DB14E49C28F8526700D6770B /* ClipBoardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB14E49A28F8526700D6770B /* ClipBoardHandler.swift */; };
+		DB5363BA295B48A20082006B /* Updater.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5363B9295B48A20082006B /* Updater.swift */; };
+		DB5363BD295B49780082006B /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = DB5363BC295B49780082006B /* ZIPFoundation */; };
 		DB638FEF28FCA1F800E4298C /* ValidatedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB638FEE28FCA1F800E4298C /* ValidatedTextField.swift */; };
 		DB638FF128FCB32600E4298C /* Toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB638FF028FCB32600E4298C /* Toolbar.swift */; };
 		DBB05FF129017FB800162C01 /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB05FF029017FB800162C01 /* MainMenu.swift */; };
@@ -39,6 +41,7 @@
 		DB14E49728F7641E00D6770B /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		DB14E49928F8526700D6770B /* CBElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CBElement.swift; path = ClipBoardManager/ClipBoard/CBElement.swift; sourceTree = SOURCE_ROOT; };
 		DB14E49A28F8526700D6770B /* ClipBoardHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClipBoardHandler.swift; path = ClipBoardManager/ClipBoard/ClipBoardHandler.swift; sourceTree = SOURCE_ROOT; };
+		DB5363B9295B48A20082006B /* Updater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Updater.swift; sourceTree = "<group>"; };
 		DB638FEE28FCA1F800E4298C /* ValidatedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatedTextField.swift; sourceTree = "<group>"; };
 		DB638FF028FCB32600E4298C /* Toolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toolbar.swift; sourceTree = "<group>"; };
 		DBB05FF029017FB800162C01 /* MainMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
@@ -49,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB5363BD295B49780082006B /* ZIPFoundation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +81,7 @@
 				DB14E48528F73F7200D6770B /* Settings */,
 				DB14E47628F73F5200D6770B /* ClipBoardManagerApp.swift */,
 				DBB05FF029017FB800162C01 /* MainMenu.swift */,
+				DB5363B9295B48A20082006B /* Updater.swift */,
 				DB14E49728F7641E00D6770B /* Utility.swift */,
 				DB14E49D28F8527C00D6770B /* ClipBoard */,
 				DB14E47A28F73F5400D6770B /* Assets.xcassets */,
@@ -134,6 +139,9 @@
 			dependencies = (
 			);
 			name = ClipBoardManager;
+			packageProductDependencies = (
+				DB5363BC295B49780082006B /* ZIPFoundation */,
+			);
 			productName = ClipBoardManager;
 			productReference = DB14E47328F73F5200D6770B /* ClipBoardManager.app */;
 			productType = "com.apple.product-type.application";
@@ -162,6 +170,9 @@
 				Base,
 			);
 			mainGroup = DB14E46A28F73F5200D6770B;
+			packageReferences = (
+				DB5363BB295B49780082006B /* XCRemoteSwiftPackageReference "ZIPFoundation" */,
+			);
 			productRefGroup = DB14E47428F73F5200D6770B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -191,6 +202,7 @@
 				DBB05FF129017FB800162C01 /* MainMenu.swift in Sources */,
 				DB14E48F28F7401300D6770B /* TabView.swift in Sources */,
 				DB14E49C28F8526700D6770B /* ClipBoardHandler.swift in Sources */,
+				DB5363BA295B48A20082006B /* Updater.swift in Sources */,
 				DB14E48E28F7401300D6770B /* ConfigHandler.swift in Sources */,
 				DB638FF128FCB32600E4298C /* Toolbar.swift in Sources */,
 				DB14E49B28F8526700D6770B /* CBElement.swift in Sources */,
@@ -345,7 +357,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Lennard.ClipBoardManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -386,7 +398,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Lennard.ClipBoardManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -420,6 +432,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DB5363BB295B49780082006B /* XCRemoteSwiftPackageReference "ZIPFoundation" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/weichsel/ZIPFoundation#installation";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.9;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DB5363BC295B49780082006B /* ZIPFoundation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DB5363BB295B49780082006B /* XCRemoteSwiftPackageReference "ZIPFoundation" */;
+			productName = ZIPFoundation;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DB14E46B28F73F5200D6770B /* Project object */;
 }
