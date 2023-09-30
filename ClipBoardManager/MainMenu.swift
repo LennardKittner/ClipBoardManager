@@ -13,6 +13,7 @@ struct MainMenu: View {
     @State private var curretnTab = 0
     
     var body: some View {
+        //TODO: this always recreates all ClipMenuItem when the history changes, which is not ideal.
         ForEach(clipBoardHandler.history.indices, id: \.self) { id in
             ClipMenuItem(clip: CBElement(string: clipBoardHandler.history[id].string, isFile: clipBoardHandler.history[id].isFile, content: clipBoardHandler.history[id].content), maxLength: configHandler.conf.previewLength)
         }

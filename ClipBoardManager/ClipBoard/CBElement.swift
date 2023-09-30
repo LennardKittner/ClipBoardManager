@@ -8,7 +8,8 @@
 
 import Cocoa
 
-class CBElement {
+class CBElement : Equatable {
+    var id: UUID
     var string :String
     var isFile :Bool
     var content :[NSPasteboard.PasteboardType : Data]
@@ -17,6 +18,7 @@ class CBElement {
         isFile = false
         string = ""
         content = [:]
+        id = UUID()
     }
     
     convenience init(from map: [String : String]) {
@@ -34,6 +36,7 @@ class CBElement {
         self.string = string
         self.isFile = isFile
         self.content = content
+        id = UUID()
     }
     
     func toMap() -> [String : String] {
@@ -44,6 +47,10 @@ class CBElement {
             stringDict[k.rawValue] = d.base64EncodedString()
         }
         return stringDict
+    }
+    
+    static func == (lhs: CBElement, rhs: CBElement) -> Bool {
+        lhs.id == rhs.id
     }
 }
 

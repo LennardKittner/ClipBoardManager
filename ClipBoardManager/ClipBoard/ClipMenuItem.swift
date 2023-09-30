@@ -6,16 +6,19 @@
 //
 
 import SwiftUI
-import AppKit
 
 struct ClipMenuItem: View {
     @EnvironmentObject private var clipBoardHandler :ClipBoardHandler
     var clip :CBElement
     var maxLength :Int
+    var preview: String
+    var img: Image
     
     init(clip: CBElement, maxLength: Int) {
         self.clip = clip
         self.maxLength = maxLength
+        self.preview = ClipMenuItem.calcTitel(clip: clip, maxLength: maxLength)
+        self.img = ClipMenuItem.calcImage(clip: clip)
     }
     
     var body: some View {
@@ -23,10 +26,10 @@ struct ClipMenuItem: View {
             clipBoardHandler.write(entry: clip)
         }) {
             HStack {
-                calcImage(clip: clip)
+                img
                     .resizable()
                     .frame(width: 15, height: 15)
-                Text(calcTitel(clip: clip, maxLength: maxLength))
+                Text(preview)
                     //.font(.monospaced(.body)())
                 // Does not work :/
 //                Text(clip.string)
@@ -42,7 +45,7 @@ struct ClipMenuItem: View {
 //        .help(clip.string)
     }
     
-    private func calcImage(clip: CBElement) -> Image {
+    private static func calcImage(clip: CBElement) -> Image {
         if clip.isFile && clip.content[NSPasteboard.PasteboardType("com.apple.icns")] == nil && clip.content[NSPasteboard.PasteboardType.tiff] == nil {
             return Image(systemName: "doc.fill")
         }
@@ -56,8 +59,7 @@ struct ClipMenuItem: View {
         return Image(nsImage: nsImage)
     }
     
-    //TODO: cache result
-    private func calcTitel(clip: CBElement, maxLength: Int) -> String {
+    private static func calcTitel(clip: CBElement, maxLength: Int) -> String {
         var menuTitel = clip.string
         let maxLengthFloat = CGFloat(maxLength)
         menuTitel = menuTitel.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
