@@ -54,6 +54,7 @@ struct Settings: View {
                     .padding(.trailing, 22.5)
                 ValidatedTextField(content: $configHandler.conf.previewLength, error: $error[2], validate: validatePositiveInt(_:))
                     .frame(width: 100)
+                Text("px")
             }
             HStack {
                 Text("Start at login:")

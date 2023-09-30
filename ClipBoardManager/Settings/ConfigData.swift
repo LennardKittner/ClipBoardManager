@@ -39,7 +39,7 @@ final class ConfigData: Decodable, Encodable {
     init() {
         clippings = 10
         refreshIntervall = 0.5
-        previewLength = 40
+        previewLength = 300
         atLogin = false
     }
     

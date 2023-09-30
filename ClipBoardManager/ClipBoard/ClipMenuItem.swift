@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import AppKit
 
 struct ClipMenuItem: View {
     @EnvironmentObject private var clipBoardHandler :ClipBoardHandler
@@ -56,13 +56,34 @@ struct ClipMenuItem: View {
         return Image(nsImage: nsImage)
     }
     
+    //TODO: cache result
     private func calcTitel(clip: CBElement, maxLength: Int) -> String {
         var menuTitel = clip.string
+        let maxLengthFloat = CGFloat(maxLength)
         menuTitel = menuTitel.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         menuTitel = menuTitel.replacingOccurrences(of: "\n", with: " ")
-        let suffix = menuTitel.count > maxLength ? "..." : ""
-        menuTitel = menuTitel.padding(toLength: maxLength, withPad: " ", startingAt: 0)
-        menuTitel.append(suffix)
+        let pipe = "|"
+        let systemFontSize = NSFont.systemFontSize
+        let systemFont = NSFont.systemFont(ofSize: systemFontSize)
+        let attributes = [NSAttributedString.Key.font : systemFont]
+        let pipeAttrString = NSAttributedString(string: pipe, attributes: attributes)
+        let minCharWidth = pipeAttrString.size().width
+        let estimatedLength = Int(maxLengthFloat / minCharWidth) + 1
+        menuTitel = String(menuTitel.prefix(estimatedLength))
+        var attrString = NSAttributedString(string: menuTitel, attributes: attributes)
+        var width = attrString.size().width
+        let addDots = width > maxLengthFloat
+        
+        while width > maxLengthFloat && !menuTitel.isEmpty {
+            menuTitel = String(menuTitel.dropLast())
+            attrString = NSAttributedString(string: menuTitel, attributes: attributes)
+            width = attrString.size().width
+        }
+        
+        if addDots {
+            menuTitel.append("...")
+        }
+        
         return menuTitel
     }
 }
