@@ -61,7 +61,7 @@ struct ClipMenuItem: View {
         var menuTitel = clip.string
         let maxLengthFloat = CGFloat(maxLength)
         menuTitel = menuTitel.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-        menuTitel = menuTitel.replacingOccurrences(of: "\n", with: " ")
+        menuTitel = menuTitel.replacingOccurrences(of: "\n", with: "•")
         let pipe = "|"
         let systemFontSize = NSFont.systemFontSize
         let systemFont = NSFont.systemFont(ofSize: systemFontSize)
