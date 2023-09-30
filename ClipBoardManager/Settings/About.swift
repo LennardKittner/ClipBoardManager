@@ -23,7 +23,7 @@ struct About: View {
             Text("Author: Lennard Kittner")
                 .font(.subheadline)
             Button(action: {
-                let url = URL(string: "https://github.com/Lennard599")!
+                let url = URL(string: "https://github.com/LennardKittner")!
                 NSWorkspace.shared.open(url)
             }) {
                 Text("My GitHub")
